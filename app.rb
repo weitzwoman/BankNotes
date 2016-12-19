@@ -21,13 +21,14 @@ end
 
 get('/user_account') do
   @user = User.find(session[:user_id])
-  @balance = @user.accounts.sum(:balance) 
+  @balance = @user.accounts.sum(:balance)
   erb(:account)
 end
 
 post('/user_account') do
   @user = User.find(params['user_id'])
-  @user.accounts.create({:name => params['account_name'], :balance => params['initial_balance']})
+  new_account = @user.accounts.new({:name => params['account_name'], :balance => params['initial_balance']})
+  new_account.save()
   redirect '/user_account'
 end
 
@@ -46,4 +47,10 @@ end
 
 get('/errors') do
   erb(:errors)
+end
+
+delete('/user_account') do
+  account = Account.find(params['account_id'].to_i)
+  account.destroy()
+  redirect 'user_account'
 end

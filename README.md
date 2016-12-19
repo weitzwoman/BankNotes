@@ -7,6 +7,7 @@ Must Haves:
 - as a user, i can see total of all transactions across accounts
 - as a user, i can add budgeting to my accounts for monthly amounts, by category (update and delete categories)
 - as a user, i can add budgeting to my accounts for yearly amounts, by category (update and delete categories)
+- as a user, i can logout of my account
 
 Nice to Haves:
 - password encryption
