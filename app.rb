@@ -16,3 +16,8 @@ end
 get('/create_account') do
   erb(:user_form)
 end
+
+post('/create_account') do
+  User.create(name: params['username'])
+  redirect('/')
+end
