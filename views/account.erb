@@ -1,1 +1,54 @@
-<%= @user.name %>
+<head>
+  <style>
+    .submit-with-icon {
+      background: transparent;
+      border: 0px;
+      padding: 0;
+      outline: 0;
+    }
+  </style>
+</head>
+
+<h1>Hello, <%= @user.name %>!</h1>
+
+<form action="/user_account" method="post">
+  <h3>Add a new account</h3>
+  <input type="hidden" name="user_id" value="<%= @user.id %>">
+  <input id='account_name' name="account_name" placeholder="Account Name">
+  <input id='initial_balance' name="initial_balance" placeholder="Initial Balance" type='number'>
+  <button type="submit" class="btn">Add Account</button>
+</form>
+<br>
+<!-- <% if @user.accounts.any?() %> -->
+  <table class="striped">
+    <thead>
+      <tr>
+        <th data-field="account_name">Account Name</th>
+        <th data-field="initial_balance">Balance</th>
+        <th data-field="update">Update</th>
+        <th data-field="delete">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @user.accounts.each() do |account| %>
+      <tr>
+        <td><%= account.name() %></td>
+        <td><%= account.balance() %></td>
+        <form>
+          <input type="hidden" name="_method" value="patch">
+          <td><button class="submit-with-icon" type="submit"><i type="submit" class="material-icons">change_history</i></button></td>
+        </form>
+        <form action='/user_account' method='post'>
+          <input type="hidden" name="account_id" value="<%= account.id %>">
+          <input type="hidden" name="_method" value="delete">
+          <td><button class="submit-with-icon" type="submit"><i type="submit" class="material-icons">delete_forever</i></button></td>
+        </form>
+      </tr>
+      <% end %>
+      <tr>
+        <td><strong>Account Total</strong></td>
+        <td><strong><%= @balance %></strong></td>
+      </tr>
+    </tbody>
+  </table>
+<!-- <% end %> -->
