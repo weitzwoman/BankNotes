@@ -7,3 +7,12 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 get('/') do
   erb(:index)
 end
+
+post('/signin') do
+  @user = User.find_by(name: params['username'])
+  erb(:signin)
+end
+
+get('/create_account') do
+  erb(:user_form)
+end

@@ -2,26 +2,21 @@
 
 <!-- cool stuff about the app goes here -->
 
-<h3>Create a New Account</h3>
-<form action="/signin" method="post">
-  <div class="input-field">
-    <i class="material-icons prefix">account_circle</i>
-    <input id="name" name="name" placeholder="Enter Username" class="validate" data-error="Please enter a username">
-  </div>
-  <!--password stuff goes here -->
-  <button type="submit" class="btn">Create Account</button>
-</form>
-
-<h3><a href='/signin'>Sign In</a></h3>
-
 <div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s6">
-          <i class="material-icons prefix">mode_edit</i>
-          <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-          <label for="icon_prefix2">First Name</label>
-        </div>
+  <div class="col s12">
+    <div class="row">
+      <div class="input-field col s6">
+        <form action="/signin" method="post">
+          <input name="username" id="username" type="text" class="validate">
+          <label for="username">Enter Username or Email</label>
+          <button type="submit" class="btn">Sign In</button>
+        </form>
+        <br>
+        <br>
+        <h6>or</h6>
+        <br>
+        <button type="submit" class="btn"><a href='/create_account'>Create New Account</a></button>
       </div>
-    </form>
+    </div>
   </div>
+</div>
