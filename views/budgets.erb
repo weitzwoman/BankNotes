@@ -1,0 +1,21 @@
+<h2>Budgets</h2>
+
+<% if @budgets.any? %>
+  <ul>
+    <% @budgets.each do |budget| %>
+      <li><a href="/budget/<%= budget.id %>"><%= budget.name %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You Have No Budgets Yet!</p>
+<% end %>
+
+<h4>Add New Budget</h4>
+
+<form action="/add_budget" method="post">
+  <label for="budget_name">Enter Budget Name</label>
+  <input type="text" id="budget_name" name="budget_name">
+  <label for="budget_amount">Enter Budget Amount</label>
+  <input type="text" id="budget_amount" name="budget_amount">
+  <button type="submit" class="btn">Add Budget</button>
+</form>
