@@ -17,11 +17,11 @@ RSpec.configure do |config|
     User.all().each() do |user|
       user.destroy()
     end
-    Budget.all().each() do |budget|
-      budget.destroy()
-    end
-    Transaction.all().each() do |transaction|
-      transaction.destroy()
-    end
+    # Budget.all().each() do |budget|
+    #   budget.destroy()
+    # end
+    # Transaction.all().each() do |transaction|
+    #   transaction.destroy()
+    # end
   end
 end
