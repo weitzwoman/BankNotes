@@ -21,6 +21,7 @@ RSpec.configure do |config|
     end
     Transaction.all().each() do |transaction|
       transaction.destroy()
+    end
     Account.all().each() do |account|
       account.destroy()
     end
