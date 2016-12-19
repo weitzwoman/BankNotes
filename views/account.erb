@@ -7,3 +7,24 @@
   <input id='initial_balance' name="initial_balance" placeholder="Initial Balance" type='number'>
   <button type="submit" class="btn">Add Account</button>
 </form>
+<br>
+<table class="striped">
+  <thead>
+    <tr>
+      <th data-field="account_name">Account Name</th>
+      <th data-field="initial_balance">Balance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user.accounts.each() do |account| %>
+    <tr>
+      <td><%= account.name() %></td>
+      <td><%= account.balance() %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <td><strong>Account Total</strong></td>
+      <td><strong><%= @balance %></strong></td>
+    </tr>
+  </tbody>
+</table>

@@ -21,6 +21,7 @@ end
 
 get('/user_account') do
   @user = User.find(session[:user_id])
+  @balance = @user.accounts.sum(:balance) 
   erb(:account)
 end
 
