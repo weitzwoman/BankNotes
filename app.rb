@@ -10,6 +10,11 @@ end
 
 post('/signin') do
   @user = User.find_by(name: params['username'])
+  redirect('/user_account')
+end
+
+get('/user_account') do
+  @user = User.find_by(name: params['username'])
   erb(:account)
 end
 
