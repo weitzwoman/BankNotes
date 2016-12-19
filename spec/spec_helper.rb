@@ -1,4 +1,3 @@
-
 ENV['RACK_ENV'] = 'test'
 
 require('bundler/setup')
@@ -17,8 +16,8 @@ RSpec.configure do |config|
     User.all().each() do |user|
       user.destroy()
     end
-    # Account.all().each() do |account|
-    #   account.destroy()
-    # end
+    Account.all().each() do |account|
+      account.destroy()
+    end
   end
 end
