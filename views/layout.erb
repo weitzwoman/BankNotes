@@ -12,9 +12,12 @@
     <div class="nav-wrapper">
       <a href="/" class="brand-logo">BankNotes</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="/budgets">Budgets</a></li>
-        <li><a href="/transactions">Transactions</a></li>
-        <li><a href="/user_account">Accounts</a></li>
+        <% if @user %>
+          <li><a href="/budgets">Budgets</a></li>
+          <li><a href="/transactions">Transactions</a></li>
+          <li><a href="/user_account">Accounts</a></li>
+          <li><a href="/logout">Sign Out</a></li>
+        <% end %>
       </ul>
     </div>
   </nav>

@@ -55,6 +55,12 @@ delete('/user_account') do
   redirect 'user_account'
 end
 
+patch('/user_account') do
+  account = Account.find(params['account_id'].to_i)
+  account.update()
+  redirect 'user_account'
+end
+
 get('/budgets') do
   @budgets = Budget.all
   erb(:budgets)
@@ -90,4 +96,9 @@ post('/add_transaction/:id') do
   category = params[:category]
   @transaction = Transaction.create({:account_id => 2, :amount => amount, :date => date, :place => place, :category => category, :budget_id => @budget.id})
   redirect("/transactions/#{@budget.id}")
+end
+
+get('/logout') do
+  session.clear
+  redirect('/')
 end
