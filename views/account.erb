@@ -2,6 +2,7 @@
 
 <form action="/user_account" method="post">
   <h3>Add a new account</h3>
+  <input type="hidden" name="user_id" value="<%= @user.id %>">
   <input id='account_name' name="account_name" placeholder="Account Name">
   <input id='initial_balance' name="initial_balance" placeholder="Initial Balance" type='number'>
   <button type="submit" class="btn">Add Account</button>

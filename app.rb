@@ -24,6 +24,12 @@ get('/user_account') do
   erb(:account)
 end
 
+post('/user_account') do
+  @user = User.find(params['user_id'])
+  @user.accounts.create({:name => params['account_name'], :balance => params['initial_balance']})
+  redirect '/user_account'
+end
+
 get('/create_account') do
   erb(:user_form)
 end
