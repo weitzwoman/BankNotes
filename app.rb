@@ -10,7 +10,7 @@ end
 
 post('/signin') do
   @user = User.find_by(name: params['username'])
-  erb(:signin)
+  erb(:account)
 end
 
 get('/create_account') do
