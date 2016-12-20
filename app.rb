@@ -149,3 +149,11 @@ delete('/user_budget') do
   budget.destroy()
   redirect '/budgets'
 end
+
+post('/transaction_search') do
+  start_date = params[:start_date]
+  end_date = params[:end_date]
+  @user = User.find(session[:user_id])
+  @transactions = Transaction.between(start_date, end_date, @user.id)
+  erb(:transactions)
+end
