@@ -27,3 +27,8 @@ a, a:link, a:visited {
 nav .brand-logo {
   position: static;
 }
+
+tr #too_big {
+  max-width: 50px;
+  text-align: left;
+}

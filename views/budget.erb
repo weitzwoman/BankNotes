@@ -1,5 +1,5 @@
 <!-- User's name -->
-<h2>Budget: <%= @budget.name %></h2>
+<h2>Budget: <%= @budget.name %> | <%= @budget.type_of_budget %></h2>
 <h5>You started with <%= @budget.amount %>0 this budget cycle.</h5>
 <h5>You have <%= @budget.current_amount %>0 left.</h5>
 
@@ -9,6 +9,12 @@
   <input type="text" id="budget_name" name="budget_name">
   <label for="budget_amount">Enter New Budget Amount</label>
   <input type="text" id="budget_amount" name="budget_amount">
+  <label for="type_of_budget">Type of Budget</label>
+  <select class="browser-default" id="type_of_budget" name="type_of_budget">
+    <option value="Monthly">Monthly</option>
+    <option value="Yearly">Yearly</option>
+  </select>
+  <br>
   <button type="submit" class="btn">Update Budget</button>
 </form>
 

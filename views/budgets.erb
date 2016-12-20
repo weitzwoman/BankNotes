@@ -22,6 +22,12 @@
   <input type="text" id="budget_name" name="budget_name">
   <label for="budget_amount">Enter Budget Amount</label>
   <input type="text" id="budget_amount" name="budget_amount">
+  <label for="type_of_budget">Type of Budget</label>
+  <select class="browser-default" id="type_of_budget" name="type_of_budget">
+    <option value="monthly">Monthly</option>
+    <option value="yearly">Yearly</option>
+  </select>
+  <br>
   <button type="submit" class="btn">Add Budget</button>
 </form>
 
@@ -31,9 +37,10 @@
     <tr>
         <th data-field="id">Name</th>
         <th data-field="name">Amount</th>
-        <th data-field="price">Current Amount</th>
-        <th data-field="price">Update</th>
-        <th data-field="price">Delete</th>
+        <th id="too_big" data-field="current_amount">Current Amount</th>
+        <th data-field="type">Type</th>
+        <th data-field="update">Update</th>
+        <th data-field="delete">Delete</th>
     </tr>
   </thead>
 
@@ -43,6 +50,7 @@
       <td><a href="/budget/<%= budget.id %>" class="blue-link"><%= budget.name %></a></td>
       <td><%= budget.amount %></td>
       <td>$<%= budget.current_amount %>0</td>
+      <td><%= budget.type_of_budget %></td>
 
         <td><button class="submit-with-icon" type="submit"><a href="/budget/<%= budget.id %>"><i type="submit" class="material-icons blue-link">change_history</i></a></button></td>
 
