@@ -238,3 +238,10 @@ post('/transaction_search') do
   @transactions = Transaction.between(start_date, end_date, @user.id)
   erb(:transactions)
 end
+
+get('/sort_by_alpha') do
+  @user = User.find(session[:user_id])
+  @budgets = @user.budgets
+  @transactions = @user.transactions.order('category asc')
+  erb(:transactions)
+end

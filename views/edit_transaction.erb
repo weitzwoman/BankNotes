@@ -8,6 +8,7 @@
   <input id="place" name="place" placeholder="Update <%= @transaction.place %>">
   <label for="budget_id">Update Budget:</label>
   <select class="browser-default" name="budget_id">
+    <option></option>
     <% @user.budgets.each do |budget| %>
       <option value="<%= budget.id %>"><%= budget.name %>, $<%= budget.current_amount %></option>
     <% end %>
@@ -15,6 +16,7 @@
   <br>
   <label for="accounts">Update Account:</label>
   <select class="browser-default" name="account_id">
+    <option></option>
     <% @user.accounts.each do |account| %>
       <option value="<%= account.id %>"><%= account.name %></option>
     <% end %>

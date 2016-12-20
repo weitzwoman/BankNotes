@@ -1,14 +1,10 @@
 
 
 Must Haves:
-- edit budget_id and account_id on individual transaction (add blank setting or auto?) (tw/jt)
 - as a user, i can add budgeting to my accounts for monthly amounts, by category (update and delete categories) (cody/james)
 - as a user, i can add budgeting to my accounts for yearly amounts, by category (update and delete categories) (cody/james)
 - highlight link tabs if currently on that page (cody/james)
-- edit placeholder text size on budgets page (tw/jt)
-- need errors page that does something (tw/jt)
 - add sorting to accounts and transaction tables (tw/jt)
-- fix change link icons, fix transaction links (tw/jt)
 
 Nice to Haves:
 - swell styling
@@ -40,3 +36,5 @@ COMPLETE:
 - as a user, i can add transactions to my accounts (update)
 - delete time from transaction form
 - fix budget UI
+- need errors page that does something (tw/jt)
+- edit budget_id and account_id on individual transaction (add blank setting or auto?) (tw/jt)
