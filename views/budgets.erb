@@ -2,7 +2,7 @@
 
 <% if @budgets.any? %>
   <ul>
-    <% @budgets.each do |budget| %>
+    <% @user.budgets.each do |budget| %>
       <li><a href="/budget/<%= budget.id %>"><%= budget.name %></a></li>
     <% end %>
   </ul>

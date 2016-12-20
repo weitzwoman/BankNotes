@@ -56,28 +56,29 @@ delete('/user_account') do
 end
 
 get('/budgets') do
+  @user = User.find(session[:user_id])
   @budgets = Budget.all
   erb(:budgets)
 end
 
 post('/add_budget') do
+  @user = User.find(session[:user_id])
   budget_name = params[:budget_name]
   budget_amount = params[:budget_amount]
   current_amount = params[:budget_amount]
-  # also fetch user_id
-  @budget = Budget.create({:name => budget_name, :amount => budget_amount, :current_amount => current_amount, :user_id => 5})
-  redirect('/budgets')
+  @budget = Budget.create({:name => budget_name, :amount => budget_amount, :current_amount => current_amount, :user_id => @user.id })
+  redirect("/budgets")
 end
 
 get('/budget/:id') do
-  # User id
   @budget = Budget.find(params[:id])
   erb(:budget)
 end
 
 get('/transactions/:id') do
+  @user = User.find(session[:user_id])
   @budget = Budget.find(params[:id])
-  @transactions = Transaction.all
+  @transactions = @budget.transactions
   erb(:transactions)
 end
 
