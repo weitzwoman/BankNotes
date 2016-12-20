@@ -127,7 +127,11 @@ end
 get('/user_account/:id') do
   @user = User.find(session[:user_id])
   @account = Account.find(params['id'].to_i)
-  erb(:edit_account)
+  if @user.accounts.include? @account
+    erb(:edit_account)
+  else
+    redirect 'errors'
+  end
 end
 
 patch('/user_account/:id') do
