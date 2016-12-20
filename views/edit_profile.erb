@@ -1,0 +1,12 @@
+<h4>Edit Profile</h4>
+<form action="/edit_profile" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input id="name" name="name" placeholder="<%= @user.name %>">
+  <button type="submit" class="btn">Edit Name</button>
+</form>
+<br>
+<br>
+<form action="/edit_profile" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button type="submit" class="btn">Delete Profile</button>
+</form>

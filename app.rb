@@ -102,3 +102,23 @@ get('/logout') do
   session.clear
   redirect('/')
 end
+
+get('/edit_profile') do
+  @user = User.find(session[:user_id])
+  erb(:edit_profile)
+end
+
+patch('/edit_profile') do
+  @user = User.find(session[:user_id])
+  @user.update(name: params['name'])
+  redirect '/edit_profile'
+end
+
+delete('/edit_profile') do
+  @user = User.find(session[:user_id])
+  @user.accounts.transactions.destroy()
+  @user.accounts.destroy()
+  @user.budgets.destroy()
+  @user.destroy()
+  redirect '/'
+end
