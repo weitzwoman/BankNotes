@@ -4,16 +4,16 @@
   <input type="hidden" name="user_id" value="<%= @user.id %>">
   <label for="amount">Enter Transaction Amount</label>
   <input type="text" id="amount" name="amount">
+  <select class="browser-default" name="transaction_type">
+    <option value="0">Debit</option>
+    <option value="1">Credit</option>
+  </select>
   <label for="date">Enter Date of Transaction</label>
   <input type="datetime-local" id="date" name="date">
   <label for="place">Enter Location of Transaction</label>
   <input type="text" id="place" name="place">
   <label for="category">Enter Category</label>
   <input type="text" id="category" name="category">
-  <select class="browser-default" name="transaction_type">
-    <option value="0">Debit</option>
-    <option value="1">Credit</option>
-  </select>
   <select class="browser-default" name="budget_id">
     <% @user.budgets.each do |budget| %>
       <option value="<%= budget.id %>"><%= budget.name %>, $<%= budget.current_amount %></option>
