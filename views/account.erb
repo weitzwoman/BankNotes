@@ -6,6 +6,9 @@
       padding: 0;
       outline: 0;
     }
+    .blue-link {
+      color: #039be5!important;
+    }
   </style>
 </head>
 
@@ -34,7 +37,7 @@
       <tr>
         <td><%= account.name() %></td>
         <td><%= account.balance() %></td>
-        <td><a href='/user_account/<%= account.id %>' class="submit-with-icon"><i class="material-icons">change_history</i></a></td>
+        <td><a href='/user_account/<%= account.id %>' class="submit-with-icon blue-link"><i class="material-icons">change_history</i></a></td>
         <form action='/user_account' method='post'>
           <input type="hidden" name="account_id" value="<%= account.id %>">
           <input type="hidden" name="_method" value="delete">

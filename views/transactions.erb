@@ -6,6 +6,10 @@
       padding: 0;
       outline: 0;
     }
+
+    .blue-link {
+      color: #039be5!important;
+    }
   </style>
 </head>
 
@@ -71,11 +75,11 @@
   <tbody>
     <% @transactions.each do |transaction| %>
     <tr>
-      <td><a href="/transactions/<%=transaction.category%>"><%= transaction.category %></a></td>
+      <td><a href="/transactions/<%=transaction.category%>" class="blue-link"><%= transaction.category %></a></td>
       <td><%= transaction.place %></td>
       <td><%= transaction.date %></td>
       <td>$<%= transaction.amount %>0</td>
-      <td><a href='/transactions_edit/<%= transaction.id %>' class="submit-with-icon"><i class="material-icons">change_history</i></a></td>
+      <td><a href='/transactions_edit/<%= transaction.id %>' class="submit-with-icon blue-link"><i class="material-icons">change_history</i></a></td>
       <form action='/transactions' method='post'>
         <input type="hidden" name="transaction_id" value="<%= transaction.id %>">
         <input type="hidden" name="_method" value="delete">
