@@ -38,6 +38,7 @@
     <tr>
         <th data-field="id">Category</th>
         <th data-field="name">Place</th>
+        <th data-field="name">Date</th>
         <th data-field="price">Amount</th>
     </tr>
   </thead>
@@ -47,6 +48,7 @@
     <tr>
       <td><a href="/transactions/<%=transaction.category%>"><%= transaction.category %></a></td>
       <td><%= transaction.place %></td>
+      <td><%= transaction.date %></td>
       <td>$<%= transaction.amount %>0</td>
     </tr>
     <% end %>

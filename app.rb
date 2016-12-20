@@ -124,7 +124,18 @@ get('/transactions/:category') do
   erb(:transaction_category)
 end
 
+get('/user_account/:id') do
+  @user = User.find(session[:user_id])
+  @account = Account.find(params['id'].to_i)
+  erb(:edit_account)
+end
 
+patch('/user_account/:id') do
+  @user = User.find(session[:user_id])
+  @account = Account.find(params['id'].to_i)
+  @account.update(name: params['name'])
+  redirect '/user_account'
+end
 
 get('/logout') do
   session.clear

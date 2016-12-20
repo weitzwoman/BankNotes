@@ -34,11 +34,7 @@
       <tr>
         <td><%= account.name() %></td>
         <td><%= account.balance() %></td>
-        <form action='/user_account' method='patch'>
-          <input type="hidden" name="account_id" value="<%= account.id %>">
-          <input type="hidden" name="_method" value="patch">
-          <td><button class="submit-with-icon" type="submit"><i type="submit" class="material-icons">change_history</i></button></td>
-        </form>
+        <td><a href='/user_account/<%= account.id %>' class="submit-with-icon"><i class="material-icons">change_history</i></a></td>
         <form action='/user_account' method='post'>
           <input type="hidden" name="account_id" value="<%= account.id %>">
           <input type="hidden" name="_method" value="delete">

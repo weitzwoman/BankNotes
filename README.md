@@ -11,8 +11,6 @@ Must Haves:
 - need errors page that does something
 - delete time from transaction form
 - add sorting to accounts and transaction tables
-- add day to transaction table
-- add transaction categories page/ build out
 - fix budget UI  
 
 Nice to Haves:
@@ -37,3 +35,5 @@ COMPLETE:
 - get transactions to talk to accounts page
 - edit account table
 - add session id to pages
+- add transaction categories page/ build out
+- add day to transaction table

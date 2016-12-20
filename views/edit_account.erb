@@ -1,0 +1,7 @@
+<h3>Edit <%= @account.name %></h3>
+
+<form action="/user_account/<%= @account.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input id="name" name="name" placeholder="Change Account Name">
+  <button type="submit" class="btn">Update</button>
+</form>
