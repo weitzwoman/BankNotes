@@ -3,4 +3,8 @@ class Account < ActiveRecord::Base
   has_many(:transactions)
   validates(:name, :presence => true)
   validates(:balance, :presence => true)
+
+  def do_math(amount)
+    self.balance += amount
+  end
 end

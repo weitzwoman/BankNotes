@@ -15,6 +15,12 @@
       <option value="<%= budget.id %>"><%= budget.name %></option>
     <% end %>
   </select>
+  <label for="accounts">Choose Account:</label>
+  <select class="browser-default" name="account_id">
+    <% @user.accounts.each do |account| %>
+      <option value="<%= account.id %>"><%= account.name %></option>
+    <% end %>
+  </select>
   <br>
   <button type="submit" class="btn">Add Transaction</button>
 </form>
