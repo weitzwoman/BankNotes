@@ -88,15 +88,16 @@ get('/transactions') do
   erb(:transactions)
 end
 
-post('/add_transaction/:id') do
+post('/transactions') do
   # Account ID
-  @budget = Budget.find(params[:id])
+  @user = User.find(session[:user_id])
+  # @budget = Budget.find(params[:id])
   amount = params[:amount]
   date = params[:date]
   place = params[:place]
   category = params[:category]
-  @transaction = Transaction.create({:account_id => 2, :amount => amount, :date => date, :place => place, :category => category, :budget_id => @budget.id})
-  redirect("/transactions/#{@budget.id}")
+  @transaction = Transaction.create({:amount => amount, :date => date, :place => place, :category => category, :user_id => @user.id})
+  redirect("/transactions")
 end
 
 get('/logout') do

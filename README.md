@@ -14,7 +14,11 @@ Must Haves:
 - edit placeholder text size on budgets page
 - need errors page that does something
 - add session id to pages
-
+- delete time from transaction form
+- add sorting to accounts and transaction tables
+- add day to transaction
+- add transaction categories page/ build out
+- fix budget UI  
 
 Nice to Haves:
 - swell styling
