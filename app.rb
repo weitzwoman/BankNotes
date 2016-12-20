@@ -15,7 +15,8 @@ post('/signin') do
     session[:user_id] = @user.id
     redirect('/user_account')
   else
-    redirect('/errors')
+    @user = @user
+    erb(:errors)
   end
 end
 
@@ -142,8 +143,6 @@ get('/transactions_edit/:id') do
     redirect 'errors'
   end
 end
-
-
 
 get('/user_account/:id') do
   @user = User.find(session[:user_id])
