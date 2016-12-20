@@ -11,7 +11,9 @@
     <nav>
     <div class="nav-wrapper">
       <a href="/" class="brand-logo">BankNotes</a>
-      <span class="brand-logo"> | <%= @user.name if !session[:user_id].nil? %></span>
+      <span class="brand-logo"><% if @user %> | 
+      <%= @user.name %>
+      <% end %> </span>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <% if @user %>
           <li class="<%= 'active' if request.url == 'http://localhost:4567/budgets' %>"><a href="/budgets">Budgets</a></li>

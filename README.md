@@ -22,6 +22,7 @@ Dreaming Big:
 - Paper Clip Gem
 
 COMPLETE:
+- add username to navbar
 - highlight link tabs if currently on that page
 - as a user, i can create an individual profile
 - as a user, i can add accounts to my profile (delete)
