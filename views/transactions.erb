@@ -1,3 +1,14 @@
+<head>
+  <style>
+    .submit-with-icon {
+      background: transparent;
+      border: 0px;
+      padding: 0;
+      outline: 0;
+    }
+  </style>
+</head>
+
 <h2>Transactions Central</h2>
 
 <form action="/transactions" method="post">
@@ -40,6 +51,8 @@
         <th data-field="name">Place</th>
         <th data-field="name">Date</th>
         <th data-field="price">Amount</th>
+        <th data-field="update">Update</th>
+        <th data-field="delete">Delete</th>
     </tr>
   </thead>
 
@@ -50,6 +63,14 @@
       <td><%= transaction.place %></td>
       <td><%= transaction.date %></td>
       <td>$<%= transaction.amount %>0</td>
+      <td>
+
+      </td>
+      <form action='/transactions' method='post'>
+        <input type="hidden" name="transaction_id" value="<%= transaction.id %>">
+        <input type="hidden" name="_method" value="delete">
+        <td><button class="submit-with-icon" type="submit"><i type="submit" class="material-icons">delete_forever</i></button></td>
+      </form>
     </tr>
     <% end %>
   </tbody>

@@ -1,7 +1,6 @@
 
 
 Must Haves:
-- private routing!!!!
 - as a user, i can add transactions to my accounts (update)
 - as a user, i can add budgeting to my accounts for monthly amounts, by category (update and delete categories)
 - as a user, i can add budgeting to my accounts for yearly amounts, by category (update and delete categories)
@@ -38,3 +37,4 @@ COMPLETE:
 - add transaction categories page/ build out
 - add day to transaction table
 - as a user, i can add accounts to my profile (update)
+- private routing!!!!

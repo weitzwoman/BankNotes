@@ -111,6 +111,12 @@ post('/transactions') do
   redirect("/transactions")
 end
 
+delete('/transactions') do
+  transaction = Transaction.find(params['transaction_id'].to_i)
+  transaction.destroy()
+  redirect '/transactions'
+end
+
 get('/transactions/:category') do
   @user = User.find(session[:user_id])
   @category = params["category"]
