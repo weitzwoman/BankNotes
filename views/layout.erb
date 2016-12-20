@@ -12,13 +12,17 @@
     <div class="nav-wrapper">
       <a href="/" class="brand-logo">BankNotes</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="/budgets">Budgets</a></li>
-        <% if @user.nil? %>
-        <li><a href="/transactions/">Transactions</a></li>
-        <% else %>
-        <li><a href="/transactions/<%= @user.id %>">Transactions</a></li>
+        <% if @user %>
+          <li><a href="/budgets">Budgets</a></li>
+          <% if @user.nil? %>
+          <li><a href="/transactions/">Transactions</a></li>
+          <% else %>
+          <li><a href="/transactions/<%= @user.id %>">Transactions</a></li>
+          <% end %>
+          <li><a href="/user_account">Accounts</a></li>
+          <li><a href="/edit_profile">Edit Profile</a></li>
+          <li><a href="/logout">Sign Out</a></li>
         <% end %>
-        <li><a href="/user_account">Accounts</a></li>
       </ul>
     </div>
   </nav>

@@ -34,7 +34,8 @@
       <tr>
         <td><%= account.name() %></td>
         <td><%= account.balance() %></td>
-        <form>
+        <form action='/user_account' method='patch'>
+          <input type="hidden" name="account_id" value="<%= account.id %>">
           <input type="hidden" name="_method" value="patch">
           <td><button class="submit-with-icon" type="submit"><i type="submit" class="material-icons">change_history</i></button></td>
         </form>
@@ -48,6 +49,8 @@
       <tr>
         <td><strong>Account Total</strong></td>
         <td><strong><%= @balance %></strong></td>
+        <td></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
