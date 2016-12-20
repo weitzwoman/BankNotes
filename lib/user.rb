@@ -6,4 +6,10 @@ class User < ActiveRecord::Base
   has_secure_password
 
   validates :password, presence: { on: :create }
+
+  define_method(:password_verified) do |password|
+    verified = authenticate(password)
+    errors.add(:password, 'Username or password is invalid. Please resubmit.') unless verified
+    verified
+  end
 end

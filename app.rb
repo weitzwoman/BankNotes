@@ -11,11 +11,11 @@ end
 
 post('/signin') do
   @user = User.find_by(name: params['username'])
-  if @user && @user.authenticate(params[:password])
+  if @user && @user.password_verified(params[:password])
     session[:user_id] = @user.id
     redirect('/user_account')
   else
-    @user = @user
+    @new_user = @user
     erb(:errors)
   end
 end
@@ -38,11 +38,12 @@ get('/create_account') do
 end
 
 post('/create_account') do
-  user = User.new(:name => params[:username], :password => params[:password], :password_confirmation => params[:password_again])
-  if user.save
+  @new_user = User.new(:name => params[:username], :password => params[:password], :password_confirmation => params[:password_again])
+  if @new_user.save
     redirect('/')
   else
-    redirect('/errors')
+    @new_user = @new_user
+    erb(:errors)
   end
 end
 

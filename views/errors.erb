@@ -20,12 +20,12 @@
     <% end %>
   </ul>
 <% end %>
-<% if @user %>
+<% if @new_user %>
   <ul>
-    <% @user.errors().full_messages().each() do |message| %>
+    <% @new_user.errors().full_messages().each() do |message| %>
     <li><%= message %></li>
     <% end %>
   </ul>
 <% end %>
 
-<a href="/">Return to Homepage</a>
+<button class="btn"><a href="/">Return to Homepage</a></button>
