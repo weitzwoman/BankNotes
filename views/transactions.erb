@@ -15,16 +15,18 @@
   <input type="hidden" name="user_id" value="<%= @user.id %>">
   <label for="amount">Enter Transaction Amount</label>
   <input type="text" id="amount" name="amount">
+  <label for="">Choose Type of Transaction</label>
   <select class="browser-default" name="transaction_type">
     <option value="0">Debit</option>
     <option value="1">Credit</option>
   </select>
   <label for="date">Enter Date of Transaction</label>
-  <input type="datetime-local" id="date" name="date">
+  <input type="date" id="date" name="date">
   <label for="place">Enter Location of Transaction</label>
   <input type="text" id="place" name="place">
   <label for="category">Enter Category</label>
   <input type="text" id="category" name="category">
+  <label for="budgets">Choose Budget</label>
   <select class="browser-default" name="budget_id">
     <% @user.budgets.each do |budget| %>
       <option value="<%= budget.id %>"><%= budget.name %>, $<%= budget.current_amount %></option>
@@ -41,9 +43,19 @@
 </form>
 <br>
 
+<h4>Search Transaction History</h4>
+
+<form action="/transaction_search" method="post">
+  <label for="start_date">Enter Start Date</label>
+  <input type="date" id="start_date" name="start_date">
+  <label for="end_date">Enter End Date</label>
+  <input type="date" id="end_date" name="end_date">
+  <button type="submit" class="btn">Submit</button>
+</form>
+
 <h4>Transaction History</h4>
 
-<% if @user.transactions.any? %>
+<% if @transactions.any? %>
 <table class="striped">
   <thead>
     <tr>
@@ -57,7 +69,7 @@
   </thead>
 
   <tbody>
-    <% @user.transactions.each do |transaction| %>
+    <% @transactions.each do |transaction| %>
     <tr>
       <td><a href="/transactions/<%=transaction.category%>"><%= transaction.category %></a></td>
       <td><%= transaction.place %></td>

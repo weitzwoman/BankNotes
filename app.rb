@@ -63,7 +63,6 @@ end
 
 get('/budgets') do
   @user = User.find(session[:user_id])
-  @budgets = Budget.all
   erb(:budgets)
 end
 
@@ -79,7 +78,11 @@ end
 get('/budget/:id') do
   @budget = Budget.find(params[:id])
   @user = User.find(session[:user_id])
-  erb(:budget)
+  if @user.budgets.include? @budget
+    erb(:budget)
+  else
+    erb(:errors)
+  end
 end
 
 get('/transactions') do
@@ -210,4 +213,26 @@ patch('/transactions_edit/:id') do
   end
   @transaction.update({:category => category, :amount => amount, :date => date, :place => place, :budget_id => budget_id, :account_id => account_id})
   redirect '/transactions'
+end
+
+patch('/update_budget/:id') do
+  budget_name = params[:budget_name]
+  budget_amount = params[:budget_amount].to_i
+  @budget = Budget.find(params[:id])
+  @budget.update({:name => budget_name, :amount => budget_amount, :current_amount => budget_amount})
+  redirect '/budgets'
+end
+
+delete('/user_budget') do
+  budget = Budget.find(params['budget_id'].to_i)
+  budget.destroy()
+  redirect '/budgets'
+end
+
+post('/transaction_search') do
+  start_date = params[:start_date]
+  end_date = params[:end_date]
+  @user = User.find(session[:user_id])
+  @transactions = Transaction.between(start_date, end_date, @user.id)
+  erb(:transactions)
 end
