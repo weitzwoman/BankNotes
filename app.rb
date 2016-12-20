@@ -116,9 +116,6 @@ end
 
 delete('/edit_profile') do
   @user = User.find(session[:user_id])
-  @user.accounts.transactions.destroy()
-  @user.accounts.destroy()
-  @user.budgets.destroy()
   @user.destroy()
   redirect '/'
 end
