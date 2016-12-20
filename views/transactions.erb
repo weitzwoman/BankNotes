@@ -10,9 +10,13 @@
   <input type="text" id="place" name="place">
   <label for="category">Enter Category</label>
   <input type="text" id="category" name="category">
-  <select class="browser-default" name="budget_name">
+  <select class="browser-default" name="transaction_type">
+    <option value="0">Debit</option>
+    <option value="1">Credit</option>
+  </select>
+  <select class="browser-default" name="budget_id">
     <% @user.budgets.each do |budget| %>
-      <option value="<%= budget.id %>"><%= budget.name %></option>
+      <option value="<%= budget.id %>"><%= budget.name %>, $<%= budget.current_amount %></option>
     <% end %>
   </select>
   <br>
