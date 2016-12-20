@@ -111,6 +111,21 @@ post('/transactions') do
   redirect("/transactions")
 end
 
+get('/transactions/:category') do
+  @user = User.find(session[:user_id])
+  @category = params["category"]
+  @transaction_category = []
+  @user.transactions.each do |transaction|
+    if transaction.category == @category
+      @transaction_category.push(transaction)
+    end
+  end
+  @transaction_category
+  erb(:transaction_category)
+end
+
+
+
 get('/logout') do
   session.clear
   redirect('/')

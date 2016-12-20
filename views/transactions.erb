@@ -45,7 +45,7 @@
   <tbody>
     <% @user.transactions.each do |transaction| %>
     <tr>
-      <td><%= transaction.category %></td>
+      <td><a href="/transactions/<%=transaction.category%>"><%= transaction.category %></a></td>
       <td><%= transaction.place %></td>
       <td>$<%= transaction.amount %>0</td>
     </tr>

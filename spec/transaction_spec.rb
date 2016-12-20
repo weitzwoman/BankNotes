@@ -12,7 +12,3 @@ describe(Transaction) do
     end
   end
 end
-
-# "account_id"
-# "budget_id"
-# "user_id"
