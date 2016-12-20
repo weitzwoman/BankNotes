@@ -4,7 +4,9 @@ Must Haves:
 - as a user, i can add budgeting to my accounts for monthly amounts, by category (update and delete categories) (cody/james)
 - as a user, i can add budgeting to my accounts for yearly amounts, by category (update and delete categories) (cody/james)
 - highlight link tabs if currently on that page (cody/james)
-- add sorting to accounts and transaction tables (tw/jt)
+- make real README
+- add integration specs
+- reorder app.rb so it makes sense and doesn't make people crazy!!!!
 
 Nice to Haves:
 - swell styling
@@ -38,3 +40,4 @@ COMPLETE:
 - fix budget UI
 - need errors page that does something (tw/jt)
 - edit budget_id and account_id on individual transaction (add blank setting or auto?) (tw/jt)
+- add sorting to accounts and transaction tables (tw/jt)
