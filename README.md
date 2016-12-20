@@ -1,6 +1,7 @@
 
 
 Must Haves:
+- transactions form needs budget and account fields (in order to link to those things)
 - as a user, i can add accounts to my profile (update)
 - as a user, i can add transactions to my accounts (update and delete)
 - as a user, i can see total of all transactions across accounts
