@@ -1,6 +1,6 @@
 <h2>Transactions Central</h2>
 
-<form action="/add_transaction/<%=  @budget.id %>" method="post">
+<form action="/transactions" method="post">
   <label for="amount">Enter Transaction Amount</label>
   <input type="text" id="amount" name="amount">
   <label for="date">Enter Date of Transaction</label>
@@ -16,7 +16,7 @@
 
 <h4>Transaction History</h4>
 
-<% if @transactions.any? %>
+<% if @user.transactions.any? %>
 <table class="striped">
   <thead>
     <tr>
@@ -27,7 +27,7 @@
   </thead>
 
   <tbody>
-    <% @transactions.each do |transaction| %>
+    <% @user.transactions.each do |transaction| %>
     <tr>
       <td><%= transaction.category %></td>
       <td><%= transaction.place %></td>

@@ -81,10 +81,9 @@ get('/budget/:id') do
   erb(:budget)
 end
 
-get('/transactions/:id') do
+get('/transactions') do
   @user = User.find(session[:user_id])
-  @budget = Budget.find(params[:id])
-  @transactions = @budget.transactions
+  @budgets = Budget.all() 
   erb(:transactions)
 end
 
