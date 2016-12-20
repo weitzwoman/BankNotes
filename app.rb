@@ -78,6 +78,7 @@ end
 
 get('/budget/:id') do
   @budget = Budget.find(params[:id])
+  @user = User.find(session[:user_id])
   erb(:budget)
 end
 
@@ -89,9 +90,7 @@ get('/transactions') do
 end
 
 post('/transactions') do
-  # Account ID
   @user = User.find(session[:user_id])
-  # @budget = Budget.find(params[:id])
   amount = params[:amount].to_i
   date = params[:date]
   place = params[:place]
@@ -101,6 +100,14 @@ post('/transactions') do
   @account = Account.find(@transaction.account_id)
   @account.do_math(@transaction.amount)
   @account.save
+  @budget = Budget.find(params[:budget_id].to_i)
+  transaction_type = params[:transaction_type].to_i
+  if transaction_type == 0
+    amount *= (-1)
+  end
+  @budget.transactions.push(@transaction)
+  @budget.do_math()
+  @budget.save()
   redirect("/transactions")
 end
 
