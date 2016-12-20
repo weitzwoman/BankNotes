@@ -85,7 +85,7 @@ end
 get('/transactions') do
   @user = User.find(session[:user_id])
   @budgets = @user.budgets
-  @transactions = Transaction.all
+  @transactions = @user.transactions
   erb(:transactions)
 end
 
@@ -95,12 +95,16 @@ post('/transactions') do
   date = params[:date]
   place = params[:place]
   category = params[:category]
+  account_id = params[:account_id]
+  @transaction = Transaction.create({:amount => amount, :date => date, :place => place, :category => category, :user_id => @user.id, :account_id => account_id})
+  @account = Account.find(@transaction.account_id)
+  @account.do_math(@transaction.amount)
+  @account.save
   @budget = Budget.find(params[:budget_id].to_i)
   transaction_type = params[:transaction_type].to_i
   if transaction_type == 0
     amount *= (-1)
   end
-  @transaction = Transaction.create({:amount => amount, :date => date, :place => place, :category => category, :user_id => @user.id})
   @budget.transactions.push(@transaction)
   @budget.do_math()
   @budget.save()
