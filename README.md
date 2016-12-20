@@ -1,16 +1,13 @@
 
 
 Must Haves:
-- edit budget_id and account_id on individual transaction (add blank setting or auto?)
-- as a user, i can add transactions to my accounts (update)
 - as a user, i can add budgeting to my accounts for monthly amounts, by category (update and delete categories)
 - as a user, i can add budgeting to my accounts for yearly amounts, by category (update and delete categories)
-- white text on link on index page
-- remove link tabs if currently on that page
+- highlight link tabs if currently on that page
+
+- edit budget_id and account_id on individual transaction (add blank setting or auto?)
 - edit placeholder text size on budgets page
 - need errors page that does something
-- delete time from transaction form
-- add sorting to accounts and transaction tables
 - fix budget UI  
 
 Nice to Haves:
@@ -39,3 +36,7 @@ COMPLETE:
 - add day to transaction table
 - as a user, i can add accounts to my profile (update)
 - private routing!!!!
+- as a user, i can add transactions to my accounts (update)
+- white text on link on index page
+- delete time from transaction form
+- add sorting to accounts and transaction tables
