@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
 
   define_method(:password_verified) do |password|
     verified = authenticate(password)
-    errors.add(:password, 'Username or password is invalid. Please resubmit.') unless verified
+    errors.add(:password, 'is invalid. Please resubmit.') unless verified
     verified
   end
+
 end

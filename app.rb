@@ -47,9 +47,6 @@ post('/create_account') do
   end
 end
 
-get('/errors') do
-  erb(:errors)
-end
 
 delete('/user_account') do
   account = Account.find(params['account_id'].to_i)
@@ -96,24 +93,29 @@ end
 
 post('/transactions') do
   @user = User.find(session[:user_id])
-  amount = params[:amount].to_i
+  amount = params[:amount]
   date = params[:date]
   place = params[:place]
   category = params[:category]
   account_id = params[:account_id]
-  @transaction = Transaction.create({:amount => amount, :date => date, :place => place, :category => category, :user_id => @user.id, :account_id => account_id})
-  @account = Account.find(@transaction.account_id)
-  @account.do_math(@transaction.amount)
-  @account.save
-  @budget = Budget.find(params[:budget_id].to_i)
-  transaction_type = params[:transaction_type].to_i
-  if transaction_type == 0
-    amount *= (-1)
+  if amount == ''
+    erb(:errors)
+  else
+    amount = amount.to_i
+    @transaction = Transaction.create({:amount => amount, :date => date, :place => place, :category => category, :user_id => @user.id, :account_id => account_id})
+    @account = Account.find(@transaction.account_id)
+    @account.do_math(@transaction.amount)
+    @account.save
+    @budget = Budget.find(params[:budget_id].to_i)
+    transaction_type = params[:transaction_type].to_i
+    if transaction_type == 0
+      amount *= (-1)
+    end
+    @budget.transactions.push(@transaction)
+    @budget.do_math()
+    @budget.save()
+    redirect("/transactions")
   end
-  @budget.transactions.push(@transaction)
-  @budget.do_math()
-  @budget.save()
-  redirect("/transactions")
 end
 
 delete('/transactions') do
@@ -141,7 +143,7 @@ get('/transactions_edit/:id') do
   if @user.transactions.include? @transaction
     erb(:edit_transaction)
   else
-    redirect 'errors'
+    erb(:errors)
   end
 end
 
@@ -151,7 +153,7 @@ get('/user_account/:id') do
   if @user.accounts.include? @account
     erb(:edit_account)
   else
-    redirect 'errors'
+    erb(:errors)
   end
 end
 
