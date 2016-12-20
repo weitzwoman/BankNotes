@@ -239,9 +239,16 @@ post('/transaction_search') do
   erb(:transactions)
 end
 
-get('/sort_by_alpha') do
+get('/sort_by_category') do
   @user = User.find(session[:user_id])
   @budgets = @user.budgets
   @transactions = @user.transactions.order('category asc')
+  erb(:transactions)
+end
+
+get('/sort_by_place') do
+  @user = User.find(session[:user_id])
+  @budgets = @user.budgets
+  @transactions = @user.transactions.order('place asc')
   erb(:transactions)
 end
