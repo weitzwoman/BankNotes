@@ -252,3 +252,17 @@ get('/sort_by_place') do
   @transactions = @user.transactions.order('place asc')
   erb(:transactions)
 end
+
+get('/sort_by_date') do
+  @user = User.find(session[:user_id])
+  @budgets = @user.budgets
+  @transactions = @user.transactions.order('date asc')
+  erb(:transactions)
+end
+
+get('/sort_by_amount') do
+  @user = User.find(session[:user_id])
+  @budgets = @user.budgets
+  @transactions = @user.transactions.order('amount desc')
+  erb(:transactions)
+end
