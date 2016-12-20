@@ -23,6 +23,7 @@ end
 get('/user_account') do
   @user = User.find(session[:user_id])
   @balance = @user.accounts.sum(:balance)
+  @accounts = @user.accounts
   erb(:account)
 end
 
@@ -265,4 +266,18 @@ get('/sort_by_amount') do
   @budgets = @user.budgets
   @transactions = @user.transactions.order('amount desc')
   erb(:transactions)
+end
+
+get('/sort_by_account') do
+  @user = User.find(session[:user_id])
+  @balance = @user.accounts.sum(:balance)
+  @accounts = @user.accounts.order('name asc')
+  erb(:account)
+end
+
+get('/sort_by_balance') do
+  @user = User.find(session[:user_id])
+  @balance = @user.accounts.sum(:balance)
+  @accounts = @user.accounts.order('balance desc')
+  erb(:account)
 end
