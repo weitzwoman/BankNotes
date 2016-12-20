@@ -63,9 +63,7 @@
       <td><%= transaction.place %></td>
       <td><%= transaction.date %></td>
       <td>$<%= transaction.amount %>0</td>
-      <td>
-
-      </td>
+      <td><a href='/transactions_edit/<%= transaction.id %>' class="submit-with-icon"><i class="material-icons">change_history</i></a></td>
       <form action='/transactions' method='post'>
         <input type="hidden" name="transaction_id" value="<%= transaction.id %>">
         <input type="hidden" name="_method" value="delete">

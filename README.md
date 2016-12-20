@@ -1,6 +1,7 @@
 
 
 Must Haves:
+- edit budget_id and account_id on individual transaction (add blank setting or auto?)
 - as a user, i can add transactions to my accounts (update)
 - as a user, i can add budgeting to my accounts for monthly amounts, by category (update and delete categories)
 - as a user, i can add budgeting to my accounts for yearly amounts, by category (update and delete categories)

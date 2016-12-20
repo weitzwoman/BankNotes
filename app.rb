@@ -130,6 +130,18 @@ get('/transactions/:category') do
   erb(:transaction_category)
 end
 
+get('/transactions_edit/:id') do
+  @user = User.find(session[:user_id])
+  @transaction = Transaction.find(params['id'].to_i)
+  if @user.transactions.include? @transaction
+    erb(:edit_transaction)
+  else
+    redirect 'errors'
+  end
+end
+
+
+
 get('/user_account/:id') do
   @user = User.find(session[:user_id])
   @account = Account.find(params['id'].to_i)
@@ -167,4 +179,35 @@ delete('/edit_profile') do
   @user = User.find(session[:user_id])
   @user.destroy()
   redirect '/'
+end
+
+patch('/transactions_edit/:id') do
+  @user = User.find(session[:user_id])
+  @transaction = Transaction.find(params['id'].to_i)
+  category = params['category']
+  amount = params['amount']
+  date = params['date']
+  place = params['place']
+  budget_id = params['budget_id']
+  account_id = params['account_id']
+  if category == ''
+    category = @transaction.category
+  end
+  if amount == ''
+    amount = @transaction.amount
+  end
+  if date == ''
+    date = @transaction.date
+  end
+  if place == ''
+    place = @transaction.place
+  end
+  if budget_id == ''
+    budget_id = @transaction.budget_id
+  end
+  if account_id == ''
+    account_id = @transaction.account_id
+  end
+  @transaction.update({:category => category, :amount => amount, :date => date, :place => place, :budget_id => budget_id, :account_id => account_id})
+  redirect '/transactions'
 end
