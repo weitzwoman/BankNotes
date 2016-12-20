@@ -4,7 +4,7 @@ class Account < ActiveRecord::Base
   validates(:name, :presence => true)
   validates(:balance, :presence => true)
 
-  def do_math(amount)
+  define_method(:do_math) do |amount|
     self.balance += amount
   end
 end

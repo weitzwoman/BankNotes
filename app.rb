@@ -92,14 +92,15 @@ post('/transactions') do
   # Account ID
   @user = User.find(session[:user_id])
   # @budget = Budget.find(params[:id])
-  amount = params[:amount]
+  amount = params[:amount].to_i
   date = params[:date]
   place = params[:place]
   category = params[:category]
   account_id = params[:account_id]
   @transaction = Transaction.create({:amount => amount, :date => date, :place => place, :category => category, :user_id => @user.id, :account_id => account_id})
   @account = Account.find(@transaction.account_id)
-  @account.balance += @transaction.amount
+  @account.do_math(@transaction.amount)
+  @account.save
   redirect("/transactions")
 end
 
