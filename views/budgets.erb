@@ -1,14 +1,19 @@
-<h2>Budgets</h2>
+<head>
+  <style>
+    .submit-with-icon {
+      background: transparent;
+      border: 0px;
+      padding: 0;
+      outline: 0;
+    }
 
-<% if @budgets.any? %>
-  <ul>
-    <% @user.budgets.each do |budget| %>
-      <li><a href="/budget/<%= budget.id %>"><%= budget.name %></a></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>You Have No Budgets Yet!</p>
-<% end %>
+    .blue-link {
+      color: #039be5!important;
+    }
+  </style>
+</head>
+
+<h2>Budgets</h2>
 
 <h4>Add New Budget</h4>
 
@@ -19,3 +24,37 @@
   <input type="text" id="budget_amount" name="budget_amount">
   <button type="submit" class="btn">Add Budget</button>
 </form>
+
+<% if @user.budgets.any? %>
+<table class="striped">
+  <thead>
+    <tr>
+        <th data-field="id">Name</th>
+        <th data-field="name">Amount</th>
+        <th data-field="price">Current Amount</th>
+        <th data-field="price">Update</th>
+        <th data-field="price">Delete</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.budgets.each do |budget| %>
+    <tr>
+      <td><a href="/budget/<%= budget.id %>" class="blue-link"><%= budget.name %></a></td>
+      <td><%= budget.amount %></td>
+      <td>$<%= budget.current_amount %>0</td>
+
+        <td><button class="submit-with-icon" type="submit"><a href="/budget/<%= budget.id %>"><i type="submit" class="material-icons blue-link">change_history</i></a></button></td>
+
+      <form action='/user_budget' method='post'>
+        <input type="hidden" name="budget_id" value="<%= budget.id %>">
+        <input type="hidden" name="_method" value="delete">
+        <td><button class="submit-with-icon" type="submit"><i type="submit" class="material-icons">delete_forever</i></button></td>
+      </form>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+<p>No budgets to display, brah.</p>
+<% end %>
