@@ -23,3 +23,7 @@ footer.page-footer {
 a, a:link, a:visited {
   color: #fff;
 }
+
+nav .brand-logo {
+  position: static;
+}

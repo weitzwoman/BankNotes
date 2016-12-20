@@ -3,7 +3,6 @@
 Must Haves:
 - as a user, i can add budgeting to my accounts for monthly amounts, by category (update and delete categories)
 - as a user, i can add budgeting to my accounts for yearly amounts, by category (update and delete categories)
-- highlight link tabs if currently on that page
 
 - edit budget_id and account_id on individual transaction (add blank setting or auto?)
 - edit placeholder text size on budgets page
@@ -23,6 +22,7 @@ Dreaming Big:
 - Paper Clip Gem
 
 COMPLETE:
+- highlight link tabs if currently on that page
 - as a user, i can create an individual profile
 - as a user, i can add accounts to my profile (delete)
 - as a user, i can logout of my account
