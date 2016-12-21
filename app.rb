@@ -91,6 +91,8 @@ get('/transactions') do
   @user = User.find(session[:user_id])
   @budgets = @user.budgets
   @transactions = @user.transactions
+  @transactions_income = Transaction.where("amount > 0 AND user_id = ?", @user.id)
+  @transactions_spending = Transaction.where("amount < 0 AND user_id = ?", @user.id)
   erb(:transactions)
 end
 

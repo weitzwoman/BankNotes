@@ -1,20 +1,23 @@
 
 
 Must Haves:
-- make real README
-- add integration specs
-- reorder app.rb so it makes sense and doesn't make people crazy!!!!
 
 Nice to Haves:
-- swell styling
+- more charts
 - as a user, i can update unique categories (some pre existing)
 - as a user, i can set spending goals
 - as a user, i can add bills that are due, with notifications
 
 Dreaming Big:
-- stock market ticker
 - location heat map of spending
 - Paper Clip Gem
+
+Not us:
+- stock market ticker
+- make real README
+- add integration specs
+- reorder app.rb so it makes sense and doesn't make people crazy!!!!
+- swell styling
 
 COMPLETE:
 - as a user, i can add budgeting to my accounts for monthly amounts, by category (update and delete categories)

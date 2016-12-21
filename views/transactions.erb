@@ -51,6 +51,8 @@
 </form>
 <br>
 
+
+
 <h4>Search Transaction History</h4>
 
 <form action="/transaction_search" method="post">
@@ -64,6 +66,14 @@
 <h4>Transaction History</h4>
 
 <% if @transactions.any? %>
+<div class="row">
+  <div class="col s6">
+    <%= pie_chart @transactions_income.group(:category).sum(:amount) %>
+  </div>
+  <div class="col s6">
+    <%= pie_chart @transactions_spending.group(:category).sum("ABS(amount)") %>
+  </div>
+</div>
 <table class="striped">
   <thead>
     <tr>
