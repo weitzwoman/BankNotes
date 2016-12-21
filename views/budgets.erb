@@ -39,12 +39,12 @@
 <table class="striped">
   <thead>
     <tr>
-        <th data-field="id">Name</th>
-        <th data-field="name">Amount</th>
-        <th id="too_big" data-field="current_amount">Current Amount</th>
-        <th data-field="type">Type</th>
-        <th data-field="update">Update</th>
-        <th data-field="delete">Delete</th>
+      <th data-field="id">Name</th>
+      <th data-field="name">Amount</th>
+      <th id="too_big" data-field="current_amount">Current Amount</th>
+      <th data-field="type">Type</th>
+      <th data-field="update">Update</th>
+      <th data-field="delete">Delete</th>
     </tr>
   </thead>
 
@@ -55,9 +55,7 @@
       <td>$<%= budget.amount %>0</td>
       <td>$<%= budget.current_amount %>0</td>
       <td><%= budget.type_of_budget %></td>
-
-        <td><button class="submit-with-icon" type="submit"><a href="/budget/<%= budget.id %>"><i type="submit" class="material-icons blue-link">change_history</i></a></button></td>
-
+      <td><button class="submit-with-icon" type="submit"><a href="/budget/<%= budget.id %>"><i type="submit" class="material-icons blue-link">change_history</i></a></button></td>
       <form action='/user_budget' method='post'>
         <input type="hidden" name="budget_id" value="<%= budget.id %>">
         <input type="hidden" name="_method" value="delete">

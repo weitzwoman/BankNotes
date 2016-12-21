@@ -1,18 +1,18 @@
 
 
 Must Haves:
-- make real README
-- add integration specs
-- reorder app.rb so it makes sense and doesn't make people crazy!!!!
+- make real README (tw/jt)
+- add integration specs (tw/jt)
+- reorder app.rb so it makes sense and doesn't make people crazy!!!! (tw/jt)
 
 Nice to Haves:
-- swell styling
+- swell styling (tw/jt)
 - as a user, i can update unique categories (some pre existing)
 - as a user, i can set spending goals
 - as a user, i can add bills that are due, with notifications
 
 Dreaming Big:
-- stock market ticker
+- stock market ticker (tw/jt)
 - location heat map of spending
 - Paper Clip Gem
 

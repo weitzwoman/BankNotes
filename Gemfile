@@ -7,6 +7,7 @@ gem('pg')
 gem('sinatra')
 gem('bcrypt', '~> 3.1.11')
 gem('chartkick')
+gem('stock_quote')
 
 group(:test) do
   gem('rspec')

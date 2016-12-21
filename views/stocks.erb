@@ -1,0 +1,8 @@
+<form action="/stocks" method="post">
+  <input id="symbol" name="symbol" placeholder="Enter Stock Symbol">
+  <button type="submit" class="btn">Get Quote</button>
+</form>
+
+<% if @stock %>
+  <%= @stock.ask %>
+<% end %>
