@@ -22,8 +22,9 @@ footer.page-footer {
   background-color: #3066A3;
 }
 
-a, .link-button {
+a, .link-button, a:hover {
   color: #fff;
+  text-decoration: none;
 }
 
 nav .brand-logo {

@@ -14,13 +14,13 @@ Dreaming Big:
 - Paper Clip Gem
 
 Not us:
-- stock market ticker
 - make real README
 - add integration specs
 - reorder app.rb so it makes sense and doesn't make people crazy!!!!
-- swell styling
 
 COMPLETE:
+- swell styling
+- stock market ticker
 - as a user, i can add budgeting to my accounts for monthly amounts, by category (update and delete categories)
 - as a user, i can add budgeting to my accounts for yearly amounts, by category (update and delete categories)
 - add username to navbar

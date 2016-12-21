@@ -138,9 +138,10 @@ delete('/transactions') do
   redirect '/transactions'
 end
 
-get('/transactions/:category') do
+get('/transactions/:id') do
   @user = User.find(session[:user_id])
-  @category = params["category"]
+  @transaction = Transaction.find(params[:id].to_i)
+  @category = @transaction.category
   @transaction_category = []
   @user.transactions.each do |transaction|
     if transaction.category == @category
@@ -148,7 +149,11 @@ get('/transactions/:category') do
     end
   end
   @transaction_category
-  erb(:transaction_category)
+  if @user.transactions.include? @transaction
+    erb(:transaction_category)
+  else
+    erb(:errors)
+  end
 end
 
 get('/transactions_edit/:id') do
@@ -258,6 +263,8 @@ get('/sort_by_category') do
   @user = User.find(session[:user_id])
   @budgets = @user.budgets
   @transactions = @user.transactions.order('category asc')
+  @transactions_income = Transaction.where("amount > 0 AND user_id = ?", @user.id)
+  @transactions_spending = Transaction.where("amount < 0 AND user_id = ?", @user.id)
   erb(:transactions)
 end
 
@@ -265,6 +272,8 @@ get('/sort_by_place') do
   @user = User.find(session[:user_id])
   @budgets = @user.budgets
   @transactions = @user.transactions.order('place asc')
+  @transactions_income = Transaction.where("amount > 0 AND user_id = ?", @user.id)
+  @transactions_spending = Transaction.where("amount < 0 AND user_id = ?", @user.id)
   erb(:transactions)
 end
 
@@ -272,6 +281,8 @@ get('/sort_by_date') do
   @user = User.find(session[:user_id])
   @budgets = @user.budgets
   @transactions = @user.transactions.order('date asc')
+  @transactions_income = Transaction.where("amount > 0 AND user_id = ?", @user.id)
+  @transactions_spending = Transaction.where("amount < 0 AND user_id = ?", @user.id)
   erb(:transactions)
 end
 
@@ -279,6 +290,8 @@ get('/sort_by_amount') do
   @user = User.find(session[:user_id])
   @budgets = @user.budgets
   @transactions = @user.transactions.order('amount desc')
+  @transactions_income = Transaction.where("amount > 0 AND user_id = ?", @user.id)
+  @transactions_spending = Transaction.where("amount < 0 AND user_id = ?", @user.id)
   erb(:transactions)
 end
 
@@ -286,6 +299,8 @@ get('/sort_by_account') do
   @user = User.find(session[:user_id])
   @balance = @user.accounts.sum(:balance)
   @accounts = @user.accounts.order('name asc')
+  @account_assets = Account.where("balance > 0 AND user_id = ?", @user.id)
+  @account_liabilities= Account.where("balance < 0 AND user_id = ?", @user.id)
   erb(:account)
 end
 
@@ -293,6 +308,8 @@ get('/sort_by_balance') do
   @user = User.find(session[:user_id])
   @balance = @user.accounts.sum(:balance)
   @accounts = @user.accounts.order('balance desc')
+  @account_assets = Account.where("balance > 0 AND user_id = ?", @user.id)
+  @account_liabilities= Account.where("balance < 0 AND user_id = ?", @user.id)
   erb(:account)
 end
 
