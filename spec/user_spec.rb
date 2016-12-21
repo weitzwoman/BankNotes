@@ -6,5 +6,6 @@ describe User do
   it {should have_many(:transactions)}
   it {should validate_presence_of(:name)}
   it {should validate_uniqueness_of(:name)}
-  it { should have_secure_password }
+  it {should have_secure_password}
+  it {should validate_presence_of(:password)}
 end

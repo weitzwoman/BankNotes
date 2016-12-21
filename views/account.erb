@@ -6,6 +6,12 @@
       padding: 0;
       outline: 0;
     }
+    .blue-link {
+      color: #039be5!important;
+    }
+    .sort_color {
+      color: tomato;
+    }
   </style>
 </head>
 
@@ -23,18 +29,18 @@
   <table class="striped">
     <thead>
       <tr>
-        <th data-field="account_name">Account Name</th>
-        <th data-field="initial_balance">Balance</th>
+        <th data-field="account_name">Account Name <a href='/sort_by_account'><i class="small material-icons sort_color">sort_by_alpha</i></a></th>
+        <th data-field="initial_balance">Balance <a href='/sort_by_balance'><i class="small material-icons sort_color">monetization_on</i></a></th>
         <th data-field="update">Update</th>
         <th data-field="delete">Delete</th>
       </tr>
     </thead>
     <tbody>
-      <% @user.accounts.each() do |account| %>
+      <% @accounts.each() do |account| %>
       <tr>
         <td><%= account.name() %></td>
         <td><%= account.balance() %></td>
-        <td><a href='/user_account/<%= account.id %>' class="submit-with-icon"><i class="material-icons">change_history</i></a></td>
+        <td><a href='/user_account/<%= account.id %>' class="submit-with-icon blue-link"><i class="material-icons">change_history</i></a></td>
         <form action='/user_account' method='post'>
           <input type="hidden" name="account_id" value="<%= account.id %>">
           <input type="hidden" name="_method" value="delete">

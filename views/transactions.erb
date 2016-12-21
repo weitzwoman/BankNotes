@@ -6,6 +6,14 @@
       padding: 0;
       outline: 0;
     }
+
+    .blue-link {
+      color: #039be5!important;
+    }
+
+    .sort_color {
+      color: tomato;
+    }
   </style>
 </head>
 
@@ -59,10 +67,10 @@
 <table class="striped">
   <thead>
     <tr>
-        <th data-field="id">Category</th>
-        <th data-field="name">Place</th>
-        <th data-field="name">Date</th>
-        <th data-field="price">Amount</th>
+        <th data-field="category">Category <a href='/sort_by_category'><i class="small material-icons sort_color">sort_by_alpha</i></a></th>
+        <th data-field="place">Place <a href='/sort_by_place'><i class="small material-icons sort_color">sort_by_alpha</i></a></th>
+        <th data-field="date">Date <a href='/sort_by_date'><i class="small material-icons sort_color">schedule</i></a></th>
+        <th data-field="price">Amount <a href='/sort_by_amount'><i class="small material-icons sort_color">monetization_on</i></a></th>
         <th data-field="update">Update</th>
         <th data-field="delete">Delete</th>
     </tr>
@@ -71,11 +79,11 @@
   <tbody>
     <% @transactions.each do |transaction| %>
     <tr>
-      <td><a href="/transactions/<%=transaction.category%>"><%= transaction.category %></a></td>
+      <td><a href="/transactions/<%=transaction.category%>" class="blue-link"><%= transaction.category %></a></td>
       <td><%= transaction.place %></td>
       <td><%= transaction.date %></td>
       <td>$<%= transaction.amount %>0</td>
-      <td><a href='/transactions_edit/<%= transaction.id %>' class="submit-with-icon"><i class="material-icons">change_history</i></a></td>
+      <td><a href='/transactions_edit/<%= transaction.id %>' class="submit-with-icon blue-link"><i class="material-icons">change_history</i></a></td>
       <form action='/transactions' method='post'>
         <input type="hidden" name="transaction_id" value="<%= transaction.id %>">
         <input type="hidden" name="_method" value="delete">

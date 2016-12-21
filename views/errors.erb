@@ -1,0 +1,31 @@
+<h3>Oops, there were some errors</h3>
+<% if @account %>
+  <ul>
+    <% @account.errors().full_messages().each() do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+<% if @budget %>
+  <ul>
+    <% @budget.errors().full_messages().each() do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+<% if @transaction %>
+  <ul>
+    <% @transaction.errors().full_messages().each() do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+<% if @new_user %>
+  <ul>
+    <% @new_user.errors().full_messages().each() do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<button class="btn link-button"><a href="/">Return to Homepage</a></button>

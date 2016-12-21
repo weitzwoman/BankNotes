@@ -11,17 +11,19 @@ end
 
 post('/signin') do
   @user = User.find_by(name: params['username'])
-  if @user && @user.authenticate(params[:password])
+  if @user && @user.password_verified(params[:password])
     session[:user_id] = @user.id
     redirect('/user_account')
   else
-    redirect('/errors')
+    @new_user = @user
+    erb(:errors)
   end
 end
 
 get('/user_account') do
   @user = User.find(session[:user_id])
   @balance = @user.accounts.sum(:balance)
+  @accounts = @user.accounts
   erb(:account)
 end
 
@@ -37,17 +39,15 @@ get('/create_account') do
 end
 
 post('/create_account') do
-  user = User.new(:name => params[:username], :password => params[:password], :password_confirmation => params[:password_again])
-  if user.save
+  @new_user = User.new(:name => params[:username], :password => params[:password], :password_confirmation => params[:password_again])
+  if @new_user.save
     redirect('/')
   else
-    redirect('/errors')
+    @new_user = @new_user
+    erb(:errors)
   end
 end
 
-get('/errors') do
-  erb(:errors)
-end
 
 delete('/user_account') do
   account = Account.find(params['account_id'].to_i)
@@ -96,24 +96,29 @@ end
 
 post('/transactions') do
   @user = User.find(session[:user_id])
-  amount = params[:amount].to_i
+  amount = params[:amount]
   date = params[:date]
   place = params[:place]
   category = params[:category]
   account_id = params[:account_id]
-  @transaction = Transaction.create({:amount => amount, :date => date, :place => place, :category => category, :user_id => @user.id, :account_id => account_id})
-  @account = Account.find(@transaction.account_id)
-  @account.do_math(@transaction.amount)
-  @account.save
-  @budget = Budget.find(params[:budget_id].to_i)
-  transaction_type = params[:transaction_type].to_i
-  if transaction_type == 0
-    amount *= (-1)
+  if amount == ''
+    erb(:errors)
+  else
+    amount = amount.to_i
+    @transaction = Transaction.create({:amount => amount, :date => date, :place => place, :category => category, :user_id => @user.id, :account_id => account_id})
+    @account = Account.find(@transaction.account_id)
+    @account.do_math(@transaction.amount)
+    @account.save
+    @budget = Budget.find(params[:budget_id].to_i)
+    transaction_type = params[:transaction_type].to_i
+    if transaction_type == 0
+      amount *= (-1)
+    end
+    @budget.transactions.push(@transaction)
+    @budget.do_math()
+    @budget.save()
+    redirect("/transactions")
   end
-  @budget.transactions.push(@transaction)
-  @budget.do_math()
-  @budget.save()
-  redirect("/transactions")
 end
 
 delete('/transactions') do
@@ -141,11 +146,9 @@ get('/transactions_edit/:id') do
   if @user.transactions.include? @transaction
     erb(:edit_transaction)
   else
-    redirect 'errors'
+    erb(:errors)
   end
 end
-
-
 
 get('/user_account/:id') do
   @user = User.find(session[:user_id])
@@ -153,7 +156,7 @@ get('/user_account/:id') do
   if @user.accounts.include? @account
     erb(:edit_account)
   else
-    redirect 'errors'
+    erb(:errors)
   end
 end
 
@@ -238,4 +241,46 @@ post('/transaction_search') do
   @user = User.find(session[:user_id])
   @transactions = Transaction.between(start_date, end_date, @user.id)
   erb(:transactions)
+end
+
+get('/sort_by_category') do
+  @user = User.find(session[:user_id])
+  @budgets = @user.budgets
+  @transactions = @user.transactions.order('category asc')
+  erb(:transactions)
+end
+
+get('/sort_by_place') do
+  @user = User.find(session[:user_id])
+  @budgets = @user.budgets
+  @transactions = @user.transactions.order('place asc')
+  erb(:transactions)
+end
+
+get('/sort_by_date') do
+  @user = User.find(session[:user_id])
+  @budgets = @user.budgets
+  @transactions = @user.transactions.order('date asc')
+  erb(:transactions)
+end
+
+get('/sort_by_amount') do
+  @user = User.find(session[:user_id])
+  @budgets = @user.budgets
+  @transactions = @user.transactions.order('amount desc')
+  erb(:transactions)
+end
+
+get('/sort_by_account') do
+  @user = User.find(session[:user_id])
+  @balance = @user.accounts.sum(:balance)
+  @accounts = @user.accounts.order('name asc')
+  erb(:account)
+end
+
+get('/sort_by_balance') do
+  @user = User.find(session[:user_id])
+  @balance = @user.accounts.sum(:balance)
+  @accounts = @user.accounts.order('balance desc')
+  erb(:account)
 end
