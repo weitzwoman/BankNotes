@@ -37,12 +37,13 @@
 <br>
 <% if @user.accounts.any?() %>
 <div class="row well">
+  <h3 class="center-align">Accounts</h3>
   <div class="col s6">
-    <h3 class="center-align">Assets</h3>
+    <h5 class="center-align">Assets</h5>
     <%= pie_chart @account_assets.group(:name).sum(:balance) %>
   </div>
   <div class="col s6">
-    <h3 class="center-align">Liabilities</h3>
+    <h5 class="center-align">Liabilities</h5>
     <%= pie_chart @account_liabilities.group(:name).sum("ABS(balance)") %>
   </div>
 </div>

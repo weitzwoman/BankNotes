@@ -7,13 +7,7 @@
         <input id="category" name="category" placeholder="Update <%= @transaction.category %> Name">
         <input id="amount" name="amount" placeholder="Update $<%= @transaction.amount %>">
         <input id="place" name="place" placeholder="Update <%= @transaction.place %>">
-
         <br>
-        <label for="">Update Type of Transaction:</label>
-        <select class="browser-default" name="transaction_type">
-          <option value="0">Debit</option>
-          <option value="1">Credit</option>
-        </select>
         <label>Update <%= @transaction.date %></label>
         <input id="date" name="date" type="date">
         <label for="budget_id">Update Budget:</label>

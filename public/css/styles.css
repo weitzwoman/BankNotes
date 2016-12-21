@@ -1,6 +1,9 @@
 .brand-logo {
   margin-left: 10px;
 }
+.about-photos {
+  max-width: 10px;
+}
 
 body {
   display: flex;

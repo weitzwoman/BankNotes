@@ -34,6 +34,7 @@
         <label for="budgets">Choose Budget:</label>
         <select class="browser-default" name="budget_id">
           <% @user.budgets.each do |budget| %>
+            <option></option>
             <option value="<%= budget.id %>"><%= budget.name %>, $<%= budget.current_amount %></option>
           <% end %>
         </select>
@@ -65,7 +66,7 @@
 
 <div class="row">
   <div class="well">
-    <h3>Transaction History</h3>
+    <h3 class="center-align">Transactions</h3>
     <% if @transactions.any? %>
     <div class="row">
       <div class="col s6">
@@ -77,15 +78,19 @@
         <%= pie_chart @transactions_spending.group(:category).sum("ABS(amount)") %>
       </div>
     </div>
+  </div>
+</div>
+<div class="row">
+  <div class="well">
     <table class="striped">
       <thead>
         <tr>
-            <th data-field="category">Category <a href='/sort_by_category'><i class="small material-icons sort_color">sort_by_alpha</i></a></th>
-            <th data-field="place">Place <a href='/sort_by_place'><i class="small material-icons sort_color">sort_by_alpha</i></a></th>
-            <th data-field="date">Date <a href='/sort_by_date'><i class="small material-icons sort_color">schedule</i></a></th>
-            <th data-field="price">Amount <a href='/sort_by_amount'><i class="small material-icons sort_color">monetization_on</i></a></th>
-            <th data-field="update">Update</th>
-            <th data-field="delete">Delete</th>
+          <th data-field="category">Category <a href='/sort_by_category'><i class="small material-icons sort_color">sort_by_alpha</i></a></th>
+          <th data-field="place">Place <a href='/sort_by_place'><i class="small material-icons sort_color">sort_by_alpha</i></a></th>
+          <th data-field="date">Date <a href='/sort_by_date'><i class="small material-icons sort_color">schedule</i></a></th>
+          <th data-field="price">Amount <a href='/sort_by_amount'><i class="small material-icons sort_color">monetization_on</i></a></th>
+          <th data-field="update">Update</th>
+          <th data-field="delete">Delete</th>
         </tr>
       </thead>
       <tbody>

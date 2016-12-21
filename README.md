@@ -3,6 +3,8 @@ Nice to Haves:
 - make real README (tw/jt)
 - add integration specs (tw/jt)
 - reorder app.rb so it makes sense and doesn't make people crazy!!!! (tw/jt)
+- add design responsiveness (minimum width for wells, break ppoint on budget page for second column, media query for about 930px or below (?), navbar currently disappears at "" pixels)
+- copyright, add description of app to homepage, add about page on bottom bar link
 
 Nice to Haves:
 - as a user, i can update unique categories (some pre existing)
@@ -12,13 +14,6 @@ Nice to Haves:
 Dreaming Big:
 - location heat map of spending
 - Paper Clip Gem
-
-Not us:
-- stock market ticker
-- make real README
-- add integration specs
-- reorder app.rb so it makes sense and doesn't make people crazy!!!!
-- swell styling
 
 COMPLETE:
 - as a user, i can add budgeting to my accounts for monthly amounts, by category (update and delete categories)

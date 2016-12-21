@@ -124,10 +124,12 @@ post('/transactions') do
     @account = Account.find(@transaction.account_id)
     @account.do_math(@transaction.amount)
     @account.save
-    @budget = Budget.find(params[:budget_id].to_i)
-    @budget.transactions.push(@transaction)
-    @budget.do_math()
-    @budget.save()
+    if params[:budget_id] != ''
+      @budget = Budget.find(params[:budget_id].to_i)
+      @budget.transactions.push(@transaction)
+      @budget.do_math()
+      @budget.save()
+    end
     redirect("/transactions")
   end
 end
@@ -305,4 +307,8 @@ post('/stocks') do
   @user = User.find(session[:user_id])
   @stock = StockQuote::Stock.quote(params['symbol'])
   erb(:stocks)
+end
+
+get('/about') do
+  erb(:about)
 end
