@@ -6,6 +6,7 @@ gem('rake')
 gem('pg')
 gem('sinatra')
 gem('bcrypt', '~> 3.1.11')
+gem('chartkick')
 
 group(:test) do
   gem('rspec')

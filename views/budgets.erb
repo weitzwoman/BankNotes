@@ -11,6 +11,8 @@
       color: #039be5!important;
     }
   </style>
+  <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
+
 </head>
 
 <h2>Budgets</h2>
@@ -31,7 +33,9 @@
   <button type="submit" class="btn">Add Budget</button>
 </form>
 
+
 <% if @user.budgets.any? %>
+<%= pie_chart @budgets.group(:name).sum(:amount) %>
 <table class="striped">
   <thead>
     <tr>
@@ -48,7 +52,7 @@
     <% @user.budgets.each do |budget| %>
     <tr>
       <td><a href="/budget/<%= budget.id %>" class="blue-link"><%= budget.name %></a></td>
-      <td><%= budget.amount %></td>
+      <td>$<%= budget.amount %>0</td>
       <td>$<%= budget.current_amount %>0</td>
       <td><%= budget.type_of_budget %></td>
 

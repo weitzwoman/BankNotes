@@ -63,14 +63,15 @@ end
 
 get('/budgets') do
   @user = User.find(session[:user_id])
+  @budgets = @user.budgets
   erb(:budgets)
 end
 
 post('/add_budget') do
   @user = User.find(session[:user_id])
   budget_name = params[:budget_name]
-  budget_amount = params[:budget_amount]
-  current_amount = params[:budget_amount]
+  budget_amount = params[:budget_amount].to_i
+  current_amount = params[:budget_amount].to_i
   type_of_budget = params[:type_of_budget]
   @budget = Budget.create({:name => budget_name, :amount => budget_amount, :current_amount => current_amount, :user_id => @user.id, :type_of_budget => type_of_budget})
   redirect("/budgets")

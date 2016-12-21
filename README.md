@@ -1,6 +1,7 @@
 
 
 Must Haves:
+- graphs and charts
 - edit budget_id and account_id on individual transaction (add blank setting or auto?)
 - edit placeholder text size on budgets page
 - need errors page that does something
@@ -13,7 +14,6 @@ Nice to Haves:
 - as a user, i can add bills that are due, with notifications
 
 Dreaming Big:
-- super swell styling with graphs and charts
 - stock market ticker
 - location heat map of spending
 - Paper Clip Gem
