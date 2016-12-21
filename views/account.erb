@@ -17,7 +17,7 @@
 
 <h1>Hello, <%= @user.name %>!</h1>
 <div class="row">
-  <div class="col s6 well">
+  <div class="col l6 well">
     <form action="/user_account" method="post">
       <h3>Add a new account</h3>
       <input type="hidden" name="user_id" value="<%= @user.id %>">
@@ -38,11 +38,11 @@
 <% if @user.accounts.any?() %>
 <div class="row well">
   <h3 class="center-align">Accounts</h3>
-  <div class="col s6">
+  <div class="col l6">
     <h5 class="center-align">Assets</h5>
     <%= pie_chart @account_assets.group(:name).sum(:balance) %>
   </div>
-  <div class="col s6">
+  <div class="col l6">
     <h5 class="center-align">Liabilities</h5>
     <%= pie_chart @account_liabilities.group(:name).sum("ABS(balance)") %>
   </div>
