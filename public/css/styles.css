@@ -19,6 +19,7 @@ footer.page-footer {
   bottom: 0;
   width: 100%;
   padding-top: 0;
+  background-color: #3066A3;
 }
 
 a, .link-button {
@@ -39,7 +40,14 @@ tr #too_big {
   background-color: rgba(230, 243, 255, 0.9)
 }
 
-h1 {
+h1, h3 {
   color: #5D5D5D;
+}
 
+.navcolor {
+  background-color: #3066A3;
+}
+
+.sort_color {
+  color: #3066A3;
 }
