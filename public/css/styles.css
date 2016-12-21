@@ -20,7 +20,7 @@ footer.page-footer {
   padding-top: 0;
 }
 
-.link-button {
+a, .link-button {
   color: #fff;
 }
 
