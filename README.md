@@ -1,10 +1,8 @@
 Nice to Haves:
-- more charts
 - make real README (tw/jt)
 - add integration specs (tw/jt)
 - reorder app.rb so it makes sense and doesn't make people crazy!!!! (tw/jt)
-- add design responsiveness (minimum width for wells, break ppoint on budget page for second column, media query for about 930px or below (?), navbar currently disappears at "" pixels)
-- copyright, add description of app to homepage, add about page on bottom bar link
+- navbar currently disappears at 1000 pixels
 
 Nice to Haves:
 - as a user, i can update unique categories (some pre existing)
@@ -16,6 +14,7 @@ Dreaming Big:
 - Paper Clip Gem
 
 COMPLETE:
+- copyright, add description of app to homepage, add about page on bottom bar link
 - as a user, i can add budgeting to my accounts for monthly amounts, by category (update and delete categories)
 - as a user, i can add budgeting to my accounts for yearly amounts, by category (update and delete categories)
 - add username to navbar
