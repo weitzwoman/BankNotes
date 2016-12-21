@@ -51,3 +51,7 @@ h1, h3, h5 {
 .sort_color {
   color: #3066A3;
 }
+
+.delete-btn {
+  background-color: #C70039;
+}
