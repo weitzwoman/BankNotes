@@ -19,7 +19,7 @@
       <%= @user.name %>
       <% end %> </span>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <% if @user %>
+        <% if session[:user_id] %>
           <li class="<%= 'active' if request.url == 'http://localhost:4567/user_account' %>"><a href="/user_account">Accounts</a></li>
           <li class="<%= 'active' if request.url == 'http://localhost:4567/budgets' %>"><a href="/budgets">Budgets</a></li>
           <li class="<%= 'active' if request.url == 'http://localhost:4567/transactions' or request.url == 'http://localhost:4567/transaction_search' %>"><a href="/transactions">Transactions</a></li>

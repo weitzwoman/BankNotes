@@ -12,7 +12,6 @@ Nice to Haves:
 - as a user, i can add bills that are due, with notifications
 
 Dreaming Big:
-- stock market ticker (tw/jt)
 - location heat map of spending
 - Paper Clip Gem
 
@@ -46,3 +45,4 @@ COMPLETE:
 - as a user, i can add budgeting to my accounts for monthly amounts, by category (update and delete categories) (cody/james)
 - as a user, i can add budgeting to my accounts for yearly amounts, by category (update and delete categories) (cody/james)
 - highlight link tabs if currently on that page (cody/james)
+- stock market ticker (tw/jt)
