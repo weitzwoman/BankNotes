@@ -10,101 +10,102 @@
     .blue-link {
       color: #039be5!important;
     }
-
-    .sort_color {
-      color: tomato;
-    }
   </style>
 </head>
 
-<h2>Transactions Central</h2>
-
-<form action="/transactions" method="post">
-  <input type="hidden" name="user_id" value="<%= @user.id %>">
-  <label for="amount">Enter Transaction Amount</label>
-  <input type="text" id="amount" name="amount">
-  <label for="">Choose Type of Transaction</label>
-  <select class="browser-default" name="transaction_type">
-    <option value="0">Debit</option>
-    <option value="1">Credit</option>
-  </select>
-  <label for="date">Enter Date of Transaction</label>
-  <input type="date" id="date" name="date">
-  <label for="place">Enter Location of Transaction</label>
-  <input type="text" id="place" name="place">
-  <label for="category">Enter Category</label>
-  <input type="text" id="category" name="category">
-  <label for="budgets">Choose Budget</label>
-  <select class="browser-default" name="budget_id">
-    <% @user.budgets.each do |budget| %>
-      <option value="<%= budget.id %>"><%= budget.name %>, $<%= budget.current_amount %></option>
-    <% end %>
-  </select>
-  <label for="accounts">Choose Account:</label>
-  <select class="browser-default" name="account_id">
-    <% @user.accounts.each do |account| %>
-      <option value="<%= account.id %>"><%= account.name %></option>
-    <% end %>
-  </select>
-  <br>
-  <button type="submit" class="btn">Add Transaction</button>
-</form>
-<br>
-
-
-
-<h4>Search Transaction History</h4>
-
-<form action="/transaction_search" method="post">
-  <label for="start_date">Enter Start Date</label>
-  <input type="date" id="start_date" name="start_date">
-  <label for="end_date">Enter End Date</label>
-  <input type="date" id="end_date" name="end_date">
-  <button type="submit" class="btn">Submit</button>
-</form>
-
-<h4>Transaction History</h4>
-
-<% if @transactions.any? %>
+<h1>Transactions Central</h1>
 <div class="row">
   <div class="col s6">
-    <h4 class="center-align">Income</h4>
-    <%= pie_chart @transactions_income.group(:category).sum(:amount) %>
+    <div class="well">
+      <h3>Add Transaction</h3>
+      <form action="/transactions" method="post">
+        <input type="hidden" name="user_id" value="<%= @user.id %>">
+        <input type="text" id="amount" name="amount" placeholder="Enter Transaction Amount">
+        <label for="">Choose Type of Transaction</label>
+        <select class="browser-default" name="transaction_type" >
+          <option value="0">Debit</option>
+          <option value="1">Credit</option>
+        </select>
+        <label for="date">Enter Date of Transaction</label>
+        <input type="date" id="date" name="date">
+        <input type="text" id="place" name="place" placeholder="Enter Location of Transaction">
+        <input type="text" id="category" name="category" placeholder="Enter Category">
+        <label for="budgets">Choose Budget</label>
+        <select class="browser-default" name="budget_id">
+          <% @user.budgets.each do |budget| %>
+            <option value="<%= budget.id %>"><%= budget.name %>, $<%= budget.current_amount %></option>
+          <% end %>
+        </select>
+        <label for="accounts">Choose Account:</label>
+        <select class="browser-default" name="account_id">
+          <% @user.accounts.each do |account| %>
+            <option value="<%= account.id %>"><%= account.name %></option>
+          <% end %>
+        </select>
+        <br>
+        <button type="submit" class="btn">Add Transaction</button>
+      </form>
+      <br>
+    </div>
   </div>
   <div class="col s6">
-    <h4 class="center-align">Spending</h4>
-    <%= pie_chart @transactions_spending.group(:category).sum("ABS(amount)") %>
+    <div class="well">
+      <h3>Search Transaction History</h3>
+      <form action="/transaction_search" method="post">
+        <label for="start_date">Enter Start Date</label>
+        <input type="date" id="start_date" name="start_date">
+        <label for="end_date">Enter End Date</label>
+        <input type="date" id="end_date" name="end_date">
+        <button type="submit" class="btn">Submit</button>
+      </form>
+    </div>
   </div>
 </div>
-<table class="striped">
-  <thead>
-    <tr>
-        <th data-field="category">Category <a href='/sort_by_category'><i class="small material-icons sort_color">sort_by_alpha</i></a></th>
-        <th data-field="place">Place <a href='/sort_by_place'><i class="small material-icons sort_color">sort_by_alpha</i></a></th>
-        <th data-field="date">Date <a href='/sort_by_date'><i class="small material-icons sort_color">schedule</i></a></th>
-        <th data-field="price">Amount <a href='/sort_by_amount'><i class="small material-icons sort_color">monetization_on</i></a></th>
-        <th data-field="update">Update</th>
-        <th data-field="delete">Delete</th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @transactions.each do |transaction| %>
-    <tr>
-      <td><a href="/transactions/<%=transaction.category%>" class="blue-link"><%= transaction.category %></a></td>
-      <td><%= transaction.place %></td>
-      <td><%= transaction.date %></td>
-      <td>$<%= transaction.amount %>0</td>
-      <td><a href='/transactions_edit/<%= transaction.id %>' class="submit-with-icon blue-link"><i class="material-icons">change_history</i></a></td>
-      <form action='/transactions' method='post'>
-        <input type="hidden" name="transaction_id" value="<%= transaction.id %>">
-        <input type="hidden" name="_method" value="delete">
-        <td><button class="submit-with-icon" type="submit"><i type="submit" class="material-icons">delete_forever</i></button></td>
-      </form>
-    </tr>
+<div class="row">
+  <div class="well">
+    <h3>Transaction History</h3>
+    <% if @transactions.any? %>
+    <div class="row">
+      <div class="col s6">
+        <h4 class="center-align">Income</h4>
+        <%= pie_chart @transactions_income.group(:category).sum(:amount) %>
+      </div>
+      <div class="col s6">
+        <h4 class="center-align">Spending</h4>
+        <%= pie_chart @transactions_spending.group(:category).sum("ABS(amount)") %>
+      </div>
+    </div>
+    <table class="striped">
+      <thead>
+        <tr>
+            <th data-field="category">Category <a href='/sort_by_category'><i class="small material-icons sort_color">sort_by_alpha</i></a></th>
+            <th data-field="place">Place <a href='/sort_by_place'><i class="small material-icons sort_color">sort_by_alpha</i></a></th>
+            <th data-field="date">Date <a href='/sort_by_date'><i class="small material-icons sort_color">schedule</i></a></th>
+            <th data-field="price">Amount <a href='/sort_by_amount'><i class="small material-icons sort_color">monetization_on</i></a></th>
+            <th data-field="update">Update</th>
+            <th data-field="delete">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @transactions.each do |transaction| %>
+        <tr>
+          <td><a href="/transactions/<%=transaction.category%>" class="blue-link"><%= transaction.category %></a></td>
+          <td><%= transaction.place %></td>
+          <td><%= transaction.date %></td>
+          <td>$<%= transaction.amount %>0</td>
+          <td><a href='/transactions_edit/<%= transaction.id %>' class="submit-with-icon blue-link"><i class="material-icons">change_history</i></a></td>
+          <form action='/transactions' method='post'>
+            <input type="hidden" name="transaction_id" value="<%= transaction.id %>">
+            <input type="hidden" name="_method" value="delete">
+            <td><button class="submit-with-icon" type="submit"><i type="submit" class="material-icons">delete_forever</i></button></td>
+          </form>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% else %>
+    <p>No transactions to display, brah.</p>
     <% end %>
-  </tbody>
-</table>
-<% else %>
-<p>No transactions to display, brah.</p>
-<% end %>
+  </div>
+</div>

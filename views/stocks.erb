@@ -1,0 +1,53 @@
+<h3>Stock Quotes</h3>
+<div class="row">
+  <div class="col s5">
+    <div class="well">
+      <br>
+      <form action="/stocks" method="post">
+        <input id="symbol" name="symbol" placeholder="Enter Stock Symbol">
+        <button type="submit" class="btn">Get Quote</button>
+      </form>
+    </div>
+  </div>
+  <div class="col s2">
+  </div>
+  <div class="col s5">
+    <% if @stock %>
+      <div class="well">
+        <% unless @stock.name == nil %>
+          <table class="bordered">
+            <thead>
+              <tr>
+                <h5 class="center-align"><%= @stock.symbol %></h5>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Name: </strong></td>
+                <td><%= @stock.name %></td>
+              </tr>
+              <tr>
+                <td><strong>Price: </strong></td>
+                <td><%= @stock.ask %></td>
+              </tr>
+              <tr>
+                <td><strong>Change: </strong></td>
+                <td><%= @stock.changein_percent %></td>
+              </tr>
+              <tr>
+                <td><strong>Year High: </strong></td>
+                <td><%= @stock.year_high %></td>
+              </tr>
+              <tr>
+                <td><strong>Year Low: </strong></td>
+                <td><%= @stock.year_low %></td>
+              </tr>
+            </tbody>
+          </table>
+        <% else %>
+          <h5 class="center-align">That symbol doesn't exist!</h5>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

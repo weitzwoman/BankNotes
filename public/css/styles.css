@@ -7,6 +7,7 @@ body {
   min-height: 100vh;
   flex-direction: column;
   margin-bottom: 100px;
+  background-image: url(../img/screenshot_green.png);
 }
 
 main {
@@ -18,6 +19,7 @@ footer.page-footer {
   bottom: 0;
   width: 100%;
   padding-top: 0;
+  background-color: #3066A3;
 }
 
 a, .link-button {
@@ -31,4 +33,25 @@ nav .brand-logo {
 tr #too_big {
   max-width: 50px;
   text-align: left;
+}
+
+.well {
+  padding: 25px;
+  background-color: rgba(230, 243, 255, 0.9)
+}
+
+h1, h3, h5 {
+  color: #5D5D5D;
+}
+
+.navcolor {
+  background-color: #3066A3;
+}
+
+.sort_color {
+  color: #3066A3;
+}
+
+.delete-btn {
+  background-color: #C70039;
 }

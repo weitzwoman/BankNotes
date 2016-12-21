@@ -15,67 +15,76 @@
 
 </head>
 
-<h2>Budgets</h2>
-
-<h4>Add New Budget</h4>
-
-<form action="/add_budget" method="post">
-  <label for="budget_name"><h6>Enter Budget Name</h6></label>
-  <input type="text" id="budget_name" name="budget_name">
-  <label for="budget_amount"><h6>Enter Budget Amount</h6></label>
-  <input type="text" id="budget_amount" name="budget_amount">
-  <label for="type_of_budget">Type of Budget</label>
-  <select class="browser-default" id="type_of_budget" name="type_of_budget">
-    <option value="monthly">Monthly</option>
-    <option value="yearly">Yearly</option>
-  </select>
-  <br>
-  <button type="submit" class="btn">Add Budget</button>
-</form>
-
-
-<% if @user.budgets.any? %>
+<h1>Budgets</h1>
 <div class="row">
   <div class="col s6">
-    <h4 class="center-align">Monthly</h4>
-      <%= pie_chart @budgets_monthly.group(:name).sum(:amount) %>
+    <div class="well">
+      <h3>Add New Budget</h3>
+      <form action="/add_budget" method="post">
+        <label for="budget_name"><h6>Enter Budget Name</h6></label>
+        <input type="text" id="budget_name" name="budget_name">
+        <label for="budget_amount"><h6>Enter Budget Amount</h6></label>
+        <input type="text" id="budget_amount" name="budget_amount">
+        <label for="type_of_budget">Type of Budget</label>
+        <select class="browser-default" id="type_of_budget" name="type_of_budget">
+          <option value="monthly">Monthly</option>
+          <option value="yearly">Yearly</option>
+        </select>
+        <br>
+        <button type="submit" class="btn">Add Budget</button>
+      </form>
+    </div>
   </div>
   <div class="col s6">
-    <h4 class="center-align">Yearly</h4>
-      <%= pie_chart @budgets_yearly.group(:name).sum(:amount) %>
+    <div class="well">
+      <% if @user.budgets.any? %>
+      <h3 class="center-align">Budget Breakdown</h3>
+      <div class="row">
+        <div class="col s6">
+          <h4 class="center-align">Monthly</h4>
+            <%= pie_chart @budgets_monthly.group(:name).sum(:amount) %>
+        </div>
+        <div class="col s6">
+          <h4 class="center-align">Yearly</h4>
+            <%= pie_chart @budgets_yearly.group(:name).sum(:amount) %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<table class="striped">
-  <thead>
-    <tr>
-        <th data-field="id">Name</th>
-        <th data-field="name">Amount</th>
-        <th id="too_big" data-field="current_amount">Current Amount</th>
-        <th data-field="type">Type</th>
-        <th data-field="update">Update</th>
-        <th data-field="delete">Delete</th>
-    </tr>
-  </thead>
+<div class="row">
+  <div class="well">
+    <table class="striped">
+      <thead>
+        <tr>
+          <th data-field="id">Name</th>
+          <th data-field="name">Amount</th>
+          <th id="too_big" data-field="current_amount">Current Amount</th>
+          <th data-field="type">Type</th>
+          <th data-field="update">Update</th>
+          <th data-field="delete">Delete</th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @user.budgets.each do |budget| %>
-    <tr>
-      <td><a href="/budget/<%= budget.id %>" class="blue-link"><%= budget.name %></a></td>
-      <td>$<%= budget.amount %>0</td>
-      <td>$<%= budget.current_amount %>0</td>
-      <td><%= budget.type_of_budget %></td>
-
-        <td><button class="submit-with-icon" type="submit"><a href="/budget/<%= budget.id %>"><i type="submit" class="material-icons blue-link">change_history</i></a></button></td>
-
-      <form action='/user_budget' method='post'>
-        <input type="hidden" name="budget_id" value="<%= budget.id %>">
-        <input type="hidden" name="_method" value="delete">
-        <td><button class="submit-with-icon" type="submit"><i type="submit" class="material-icons">delete_forever</i></button></td>
-      </form>
-    </tr>
+      <tbody>
+        <% @user.budgets.each do |budget| %>
+        <tr>
+          <td><a href="/budget/<%= budget.id %>" class="blue-link"><%= budget.name %></a></td>
+          <td>$<%= budget.amount %>0</td>
+          <td>$<%= budget.current_amount %>0</td>
+          <td><%= budget.type_of_budget %></td>
+          <td><button class="submit-with-icon" type="submit"><a href="/budget/<%= budget.id %>"><i type="submit" class="material-icons blue-link">change_history</i></a></button></td>
+          <form action='/user_budget' method='post'>
+            <input type="hidden" name="budget_id" value="<%= budget.id %>">
+            <input type="hidden" name="_method" value="delete">
+            <td><button class="submit-with-icon" type="submit"><i type="submit" class="material-icons">delete_forever</i></button></td>
+          </form>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% else %>
+    <p>No budgets to display, brah.</p>
     <% end %>
-  </tbody>
-</table>
-<% else %>
-<p>No budgets to display, brah.</p>
-<% end %>
+  </div>
+</div>

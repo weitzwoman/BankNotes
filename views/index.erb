@@ -6,16 +6,18 @@
   <div class="col s12">
     <div class="row">
       <div class="input-field col s6">
-        <form action="/signin" method="post">
-          <input name="username" id="username" type="text" class="validate" placeholder="Enter Username or Email">
-          <input name="password" id="password" type="password" class="validate" placeholder="Password">
-          <button type="submit" class="btn">Sign In</button>
-        </form>
-        <br>
-        <br>
-        <h6>or</h6>
-        <br>
-        <button type="submit" class="btn link-button"><a href='/create_account'>Create New Account</a></button>
+        <div class="well">
+          <form action="/signin" method="post">
+            <input name="username" id="username" type="text" class="validate" placeholder="Enter Username or Email">
+            <input name="password" id="password" type="password" class="validate" placeholder="Password">
+            <button type="submit" class="btn">Sign In</button>
+          </form>
+          <br>
+          <br>
+          <h6>or</h6>
+          <br>
+          <button type="submit" class="btn link-button"><a href='/create_account'>Create New Account</a></button>
+        </div>
       </div>
     </div>
   </div>

@@ -1,20 +1,21 @@
 <h3>All Transactions for <%=@category %></h3>
-
-<table class="striped">
-  <thead>
-    <tr>
-        <th data-field="id">Place</th>
-        <th data-field="name">Date</th>
-        <th data-field="price">Amount</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @transaction_category.each do |transaction| %>
-    <tr>
-      <td><%= transaction.place %></td>
-      <td><%= transaction.date %></td>
-      <td>$<%= transaction.amount %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="well">
+  <table class="striped">
+    <thead>
+      <tr>
+          <th data-field="id">Place</th>
+          <th data-field="name">Date</th>
+          <th data-field="price">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @transaction_category.each do |transaction| %>
+      <tr>
+        <td><%= transaction.place %></td>
+        <td><%= transaction.date %></td>
+        <td>$<%= transaction.amount %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -295,3 +295,14 @@ get('/sort_by_balance') do
   @accounts = @user.accounts.order('balance desc')
   erb(:account)
 end
+
+get('/stocks') do
+  @user = User.find(session[:user_id])
+  erb(:stocks)
+end
+
+post('/stocks') do
+  @user = User.find(session[:user_id])
+  @stock = StockQuote::Stock.quote(params['symbol'])
+  erb(:stocks)
+end

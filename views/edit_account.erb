@@ -1,7 +1,15 @@
 <h3>Edit <%= @account.name %></h3>
-
-<form action="/user_account/<%= @account.id %>" method="post">
-  <input type="hidden" name="_method" value="patch">
-  <input id="name" name="name" placeholder="Change Account Name">
-  <button type="submit" class="btn">Update</button>
-</form>
+<div class="row">
+  <div class="col s6">
+    <div class="well">
+      <form action="/user_account/<%= @account.id %>" method="post">
+        <input type="hidden" name="_method" value="patch">
+        <input id="name" name="name" placeholder="Change Account Name">
+        <button type="submit" class="btn">Update</button>
+      </form>
+      <br>
+      <br>
+      <button class="btn"><a href="/user_account">Return to Accounts</a></button>
+    </div>
+  </div>
+</div>

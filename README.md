@@ -1,9 +1,10 @@
-
-
-Must Haves:
-
 Nice to Haves:
 - more charts
+- make real README (tw/jt)
+- add integration specs (tw/jt)
+- reorder app.rb so it makes sense and doesn't make people crazy!!!! (tw/jt)
+
+Nice to Haves:
 - as a user, i can update unique categories (some pre existing)
 - as a user, i can set spending goals
 - as a user, i can add bills that are due, with notifications
@@ -49,3 +50,5 @@ COMPLETE:
 - as a user, i can add budgeting to my accounts for monthly amounts, by category (update and delete categories) (cody/james)
 - as a user, i can add budgeting to my accounts for yearly amounts, by category (update and delete categories) (cody/james)
 - highlight link tabs if currently on that page (cody/james)
+- stock market ticker (tw/jt)
+- swell styling (tw/jt)
