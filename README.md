@@ -5,11 +5,10 @@ Nice to Haves:
 - reorder app.rb so it makes sense and doesn't make people crazy!!!! (tw/jt)
 
 Nice to Haves:
-- as a user, i can update unique categories (some pre existing)
 - as a user, i can set spending goals
-- as a user, i can add bills that are due, with notifications
 
 Dreaming Big:
+- as a user, i can add bills that are due, with notifications
 - location heat map of spending
 - Paper Clip Gem
 
@@ -19,6 +18,7 @@ Not us:
 - reorder app.rb so it makes sense and doesn't make people crazy!!!!
 
 COMPLETE:
+- as a user, i can update unique categories (some pre existing)
 - swell styling
 - stock market ticker
 - as a user, i can add budgeting to my accounts for monthly amounts, by category (update and delete categories)
