@@ -6,13 +6,11 @@
       padding: 0;
       outline: 0;
     }
-
     .blue-link {
       color: #039be5!important;
     }
   </style>
   <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
-
 </head>
 
 <h1>Budgets</h1>
@@ -35,23 +33,25 @@
       </form>
     </div>
   </div>
-  <div class="col s6">
-    <div class="well">
-      <% if @user.budgets.any? %>
-      <h3 class="center-align">Budget Breakdown</h3>
-      <div class="row">
-        <div class="col s6">
-          <h4 class="center-align">Monthly</h4>
-            <%= pie_chart @budgets_monthly.group(:name).sum(:amount) %>
-        </div>
-        <div class="col s6">
-          <h4 class="center-align">Yearly</h4>
-            <%= pie_chart @budgets_yearly.group(:name).sum(:amount) %>
-        </div>
+</div>
+
+<div class="row">
+  <div class="well">
+    <% if @user.budgets.any? %>
+    <h3 class="center-align">Budget Breakdown</h3>
+    <div class="row">
+      <div class="col s6">
+        <h5 class="center-align">Monthly</h5>
+          <%= pie_chart @budgets_monthly.group(:name).sum(:amount) %>
+      </div>
+      <div class="col s6">
+        <h5 class="center-align">Yearly</h5>
+          <%= pie_chart @budgets_yearly.group(:name).sum(:amount) %>
       </div>
     </div>
   </div>
 </div>
+
 <div class="row">
   <div class="well">
     <table class="striped">
@@ -65,7 +65,6 @@
           <th data-field="delete">Delete</th>
         </tr>
       </thead>
-
       <tbody>
         <% @user.budgets.each do |budget| %>
         <tr>

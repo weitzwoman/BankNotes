@@ -20,17 +20,18 @@
       <h3>Add Transaction</h3>
       <form action="/transactions" method="post">
         <input type="hidden" name="user_id" value="<%= @user.id %>">
+        <input type="text" id="category" name="category" placeholder="Enter Category">
         <input type="text" id="amount" name="amount" placeholder="Enter Transaction Amount">
-        <label for="">Choose Type of Transaction</label>
-        <select class="browser-default" name="transaction_type" >
+        <input type="text" id="place" name="place" placeholder="Enter Location of Transaction">
+        <br>
+        <label for="">Choose Type of Transaction:</label>
+        <select class="browser-default" name="transaction_type">
           <option value="0">Debit</option>
           <option value="1">Credit</option>
         </select>
-        <label for="date">Enter Date of Transaction</label>
+        <label for="date">Enter Date of Transaction:</label>
         <input type="date" id="date" name="date">
-        <input type="text" id="place" name="place" placeholder="Enter Location of Transaction">
-        <input type="text" id="category" name="category" placeholder="Enter Category">
-        <label for="budgets">Choose Budget</label>
+        <label for="budgets">Choose Budget:</label>
         <select class="browser-default" name="budget_id">
           <% @user.budgets.each do |budget| %>
             <option value="<%= budget.id %>"><%= budget.name %>, $<%= budget.current_amount %></option>
@@ -68,11 +69,11 @@
     <% if @transactions.any? %>
     <div class="row">
       <div class="col s6">
-        <h4 class="center-align">Income</h4>
+        <h5 class="center-align">Income</h5>
         <%= pie_chart @transactions_income.group(:category).sum(:amount) %>
       </div>
       <div class="col s6">
-        <h4 class="center-align">Spending</h4>
+        <h5 class="center-align">Spending</h5>
         <%= pie_chart @transactions_spending.group(:category).sum("ABS(amount)") %>
       </div>
     </div>

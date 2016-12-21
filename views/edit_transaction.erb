@@ -1,27 +1,41 @@
 <h3>Edit <%= @transaction.category %></h3>
-<div class="well">
-  <form action="/transactions_edit/<%= @transaction.id %>" method="post">
-    <input type="hidden" name="_method" value="patch">
-    <input id="category" name="category" placeholder="Update <%= @transaction.category %> Name">
-    <input id="amount" name="amount" placeholder="Update $<%= @transaction.amount %>">
-    <input id="date" name="date" placeholder="Update <%= @transaction.date %>" type="datetime">
-    <input id="place" name="place" placeholder="Update <%= @transaction.place %>">
-    <label for="budget_id">Update Budget:</label>
-    <select class="browser-default" name="budget_id">
-      <option></option>
-      <% @user.budgets.each do |budget| %>
-        <option value="<%= budget.id %>"><%= budget.name %>, $<%= budget.current_amount %></option>
-      <% end %>
-    </select>
-    <br>
-    <label for="accounts">Update Account:</label>
-    <select class="browser-default" name="account_id">
-      <option></option>
-      <% @user.accounts.each do |account| %>
-        <option value="<%= account.id %>"><%= account.name %></option>
-      <% end %>
-    </select>
-    <br>
-    <button type="submit" class="btn">Update</button>
-  </form>
+<div class="row">
+  <div class="col s6">
+    <div class="well">
+      <form action="/transactions_edit/<%= @transaction.id %>" method="post">
+        <input type="hidden" name="_method" value="patch">
+        <input id="category" name="category" placeholder="Update <%= @transaction.category %> Name">
+        <input id="amount" name="amount" placeholder="Update $<%= @transaction.amount %>">
+        <input id="place" name="place" placeholder="Update <%= @transaction.place %>">
+
+        <br>
+        <label for="">Update Type of Transaction:</label>
+        <select class="browser-default" name="transaction_type">
+          <option value="0">Debit</option>
+          <option value="1">Credit</option>
+        </select>
+        <label>Update <%= @transaction.date %></label>
+        <input id="date" name="date" type="date">
+        <label for="budget_id">Update Budget:</label>
+        <select class="browser-default" name="budget_id">
+          <option></option>
+          <% @user.budgets.each do |budget| %>
+            <option value="<%= budget.id %>"><%= budget.name %>, $<%= budget.current_amount %></option>
+          <% end %>
+        </select>
+        <br>
+        <label for="accounts">Update Account:</label>
+        <select class="browser-default" name="account_id">
+          <option></option>
+          <% @user.accounts.each do |account| %>
+            <option value="<%= account.id %>"><%= account.name %></option>
+          <% end %>
+        </select>
+        <br>
+        <button type="submit" class="btn">Update</button>
+      </form>
+      <br>
+      <button class="btn"><a href="/transactions">Return to Transactions</a></button>
+    </div>
+  </div>
 </div>

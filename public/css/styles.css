@@ -55,3 +55,8 @@ h1, h3, h5 {
 .delete-btn {
   background-color: #C70039;
 }
+
+form h6 {
+  font-size: 0.8rem;
+  color: #9e9e9e;
+}
