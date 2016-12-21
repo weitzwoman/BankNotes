@@ -24,12 +24,19 @@ get('/user_account') do
   @user = User.find(session[:user_id])
   @balance = @user.accounts.sum(:balance)
   @accounts = @user.accounts
+  @account_assets = Account.where("balance > 0 AND user_id = ?", @user.id)
+  @account_liabilities= Account.where("balance < 0 AND user_id = ?", @user.id)
   erb(:account)
 end
 
 post('/user_account') do
   @user = User.find(params['user_id'])
-  new_account = @user.accounts.new({:name => params['account_name'], :balance => params['initial_balance']})
+  balance = params['initial_balance'].to_i
+  account_type = params[:account_type].to_i
+  if account_type == 0
+    balance *= (-1)
+  end
+  new_account = @user.accounts.new({:name => params['account_name'], :balance => balance})
   new_account.save()
   redirect '/user_account'
 end
@@ -64,6 +71,8 @@ end
 get('/budgets') do
   @user = User.find(session[:user_id])
   @budgets = @user.budgets
+  @budgets_monthly = Budget.where("type_of_budget = ? AND user_id = ?", "monthly", @user.id)
+  @budgets_yearly = Budget.where("type_of_budget = ? AND user_id = ?", "yearly", @user.id)
   erb(:budgets)
 end
 

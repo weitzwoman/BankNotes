@@ -35,7 +35,16 @@
 
 
 <% if @user.budgets.any? %>
-<%= pie_chart @budgets.group(:name).sum(:amount) %>
+<div class="row">
+  <div class="col s6">
+    <h4 class="center-align">Monthly</h4>
+      <%= pie_chart @budgets_monthly.group(:name).sum(:amount) %>
+  </div>
+  <div class="col s6">
+    <h4 class="center-align">Yearly</h4>
+      <%= pie_chart @budgets_yearly.group(:name).sum(:amount) %>
+  </div>
+</div>
 <table class="striped">
   <thead>
     <tr>

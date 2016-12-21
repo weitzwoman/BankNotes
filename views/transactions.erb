@@ -68,9 +68,11 @@
 <% if @transactions.any? %>
 <div class="row">
   <div class="col s6">
+    <h4 class="center-align">Income</h4>
     <%= pie_chart @transactions_income.group(:category).sum(:amount) %>
   </div>
   <div class="col s6">
+    <h4 class="center-align">Spending</h4>
     <%= pie_chart @transactions_spending.group(:category).sum("ABS(amount)") %>
   </div>
 </div>
