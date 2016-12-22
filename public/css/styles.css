@@ -63,7 +63,7 @@ form h6 {
 }
 
 @media screen and (max-width: 1000px) {
-  #username {
+  #nav-username {
     display: none;
   }
 }

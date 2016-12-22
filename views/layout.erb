@@ -18,7 +18,7 @@
     <nav>
     <div class="nav-wrapper navcolor">
       <a href="/" class="brand-logo">BankNotes</a>
-      <span id="username" class="brand-logo"><% if @user %> |
+      <span id="nav-username" class="brand-logo"><% if @user %> |
         <%= @user.name %>
         <% end %> </span>
       <% if session[:user_id] %>
