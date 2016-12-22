@@ -123,10 +123,12 @@ post('/transactions') do
     @account = Account.find(@transaction.account_id)
     @account.do_math(@transaction.amount)
     @account.save
-    @budget = Budget.find(params[:budget_id].to_i)
-    @budget.transactions.push(@transaction)
-    @budget.do_math()
-    @budget.save()
+    if params[:budget_id] != ''
+      @budget = Budget.find(params[:budget_id].to_i)
+      @budget.transactions.push(@transaction)
+      @budget.do_math()
+      @budget.save()
+    end
     redirect("/transactions")
   end
 end
@@ -254,6 +256,8 @@ post('/transaction_search') do
   start_date = params[:start_date]
   end_date = params[:end_date]
   @user = User.find(session[:user_id])
+  @transactions_income = Transaction.where("amount > 0 AND user_id = ?", @user.id)
+  @transactions_spending = Transaction.where("amount < 0 AND user_id = ?", @user.id)
   @transactions = Transaction.between(start_date, end_date, @user.id)
   erb(:transactions)
 end
@@ -321,4 +325,8 @@ post('/stocks') do
   @user = User.find(session[:user_id])
   @stock = StockQuote::Stock.quote(params['symbol'])
   erb(:stocks)
+end
+
+get('/about') do
+  erb(:about)
 end

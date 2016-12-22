@@ -1,8 +1,8 @@
 Nice to Haves:
-- more charts
 - make real README (tw/jt)
 - add integration specs (tw/jt)
 - reorder app.rb so it makes sense and doesn't make people crazy!!!! (tw/jt)
+- navbar currently disappears at 1000 pixels
 
 Nice to Haves:
 - as a user, i can set spending goals
@@ -12,15 +12,9 @@ Dreaming Big:
 - location heat map of spending
 - Paper Clip Gem
 
-Not us:
-- make real README
-- add integration specs
-- reorder app.rb so it makes sense and doesn't make people crazy!!!!
-
 COMPLETE:
-- as a user, i can update unique categories (some pre existing)
-- swell styling
-- stock market ticker
+- copyright, add description of app to homepage, add about page on bottom bar link
+
 - as a user, i can add budgeting to my accounts for monthly amounts, by category (update and delete categories)
 - as a user, i can add budgeting to my accounts for yearly amounts, by category (update and delete categories)
 - add username to navbar

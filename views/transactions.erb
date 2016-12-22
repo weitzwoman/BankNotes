@@ -15,24 +15,26 @@
 
 <h1>Transactions Central</h1>
 <div class="row">
-  <div class="col s6">
+  <div class="col l6">
     <div class="well">
       <h3>Add Transaction</h3>
       <form action="/transactions" method="post">
         <input type="hidden" name="user_id" value="<%= @user.id %>">
+        <input type="text" id="category" name="category" placeholder="Enter Category">
         <input type="text" id="amount" name="amount" placeholder="Enter Transaction Amount">
-        <label for="">Choose Type of Transaction</label>
-        <select class="browser-default" name="transaction_type" >
+        <input type="text" id="place" name="place" placeholder="Enter Location of Transaction">
+        <br>
+        <label for="">Choose Type of Transaction:</label>
+        <select class="browser-default" name="transaction_type">
           <option value="0">Debit</option>
           <option value="1">Credit</option>
         </select>
-        <label for="date">Enter Date of Transaction</label>
+        <label for="date">Enter Date of Transaction:</label>
         <input type="date" id="date" name="date">
-        <input type="text" id="place" name="place" placeholder="Enter Location of Transaction">
-        <input type="text" id="category" name="category" placeholder="Enter Category">
-        <label for="budgets">Choose Budget</label>
+        <label for="budgets">Choose Budget:</label>
         <select class="browser-default" name="budget_id">
           <% @user.budgets.each do |budget| %>
+            <option></option>
             <option value="<%= budget.id %>"><%= budget.name %>, $<%= budget.current_amount %></option>
           <% end %>
         </select>
@@ -48,7 +50,7 @@
       <br>
     </div>
   </div>
-  <div class="col s6">
+  <div class="col l6">
     <div class="well">
       <h3>Search Transaction History</h3>
       <form action="/transaction_search" method="post">
@@ -73,49 +75,57 @@
   <br>
 
 <div class="row">
-  <div class="well">
-    <h3>Transaction History</h3>
-    <% if @transactions.any? %>
-    <div class="row">
-      <div class="col s6">
-        <h4 class="center-align">Income</h4>
-        <%= pie_chart @transactions_income.group(:category).sum(:amount) %>
-      </div>
-      <div class="col s6">
-        <h4 class="center-align">Spending</h4>
-        <%= pie_chart @transactions_spending.group(:category).sum("ABS(amount)") %>
+  <div class="col l12">
+    <div class="well">
+      <h3 class="center-align">Transactions</h3>
+      <% if @transactions.any? %>
+      <div class="row">
+        <div class="col l6">
+          <h5 class="center-align">Income</h5>
+          <%= pie_chart @transactions_income.group(:category).sum(:amount) %>
+        </div>
+        <div class="col l6">
+          <h5 class="center-align">Spending</h5>
+          <%= pie_chart @transactions_spending.group(:category).sum("ABS(amount)") %>
+        </div>
       </div>
     </div>
-    <table class="striped">
-      <thead>
-        <tr>
+  </div>
+</div>
+<div class="row">
+  <div class="col l12">
+    <div class="well">
+      <table class="striped">
+        <thead>
+          <tr>
             <th data-field="category">Category <a href='/sort_by_category'><i class="small material-icons sort_color">sort_by_alpha</i></a></th>
             <th data-field="place">Place <a href='/sort_by_place'><i class="small material-icons sort_color">sort_by_alpha</i></a></th>
             <th data-field="date">Date <a href='/sort_by_date'><i class="small material-icons sort_color">schedule</i></a></th>
             <th data-field="price">Amount <a href='/sort_by_amount'><i class="small material-icons sort_color">monetization_on</i></a></th>
             <th data-field="update">Update</th>
             <th data-field="delete">Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @transactions.each do |transaction| %>
-        <tr>
-          <td><a href="/transactions/<%=transaction.id%>" class="blue-link"><%= transaction.category %></a></td>
-          <td><%= transaction.place %></td>
-          <td><%= transaction.date %></td>
-          <td>$<%= transaction.amount %>0</td>
-          <td><a href='/transactions_edit/<%= transaction.id %>' class="submit-with-icon blue-link"><i class="material-icons">change_history</i></a></td>
-          <form action='/transactions' method='post'>
-            <input type="hidden" name="transaction_id" value="<%= transaction.id %>">
-            <input type="hidden" name="_method" value="delete">
-            <td><button class="submit-with-icon" type="submit"><i type="submit" class="material-icons">delete_forever</i></button></td>
-          </form>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <% else %>
-    <p>No transactions to display, brah.</p>
-    <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% @transactions.each do |transaction| %>
+          <tr>
+            <td><a href="/transactions/<%=transaction.id%>" class="blue-link"><%= transaction.category %></a></td>
+            <td><%= transaction.place %></td>
+            <td><%= transaction.date %></td>
+            <td>$<%= transaction.amount %>0</td>
+            <td><a href='/transactions_edit/<%= transaction.id %>' class="submit-with-icon blue-link"><i class="material-icons">change_history</i></a></td>
+            <form action='/transactions' method='post'>
+              <input type="hidden" name="transaction_id" value="<%= transaction.id %>">
+              <input type="hidden" name="_method" value="delete">
+              <td><button class="submit-with-icon" type="submit"><i type="submit" class="material-icons">delete_forever</i></button></td>
+            </form>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% else %>
+      <p>No transactions to display, brah.</p>
+      <% end %>
+    </div>
   </div>
 </div>

@@ -11,7 +11,7 @@
 <h5>You started with <%= @budget.amount %>0 this budget cycle</h5>
 <h5>You have <%= @budget.current_amount %>0 left</h5>
 <div class="row">
-  <div class="col s6">
+  <div class="col l6">
     <div class="well">
       <form action="/update_budget/<%= @budget.id %>" method="post">
         <input type="hidden" name="_method" value="patch">
