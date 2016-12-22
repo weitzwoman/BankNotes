@@ -19,6 +19,9 @@
     <div class="nav-wrapper navcolor">
       <a href="/" class="brand-logo">BankNotes</a>
       <% if session[:user_id] %>
+      <span class="brand-logo"><% if @user %> |
+      <%= @user.name %>
+      <% end %> </span>
       <a href="#" data-activates="mobile-demo" class="button-collapse right"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li class="<%= 'active' if request.url == 'http://localhost:4567/user_account' %>"><a href="/user_account">Accounts</a></li>
