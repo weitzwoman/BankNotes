@@ -73,7 +73,7 @@ get('/user_account/:id') do
   if @user.accounts.include? @account
     erb(:edit_account)
   else
-    erb(:errors)
+    erb(:user_errors)
   end
 end
 
@@ -133,7 +133,7 @@ get('/budget/:id') do
   if @user.budgets.include? @budget
     erb(:budget)
   else
-    erb(:errors)
+    erb(:user_errors)
   end
 end
 
@@ -172,7 +172,7 @@ post('/transactions') do
   category = params[:category]
   account_id = params[:account_id]
   if amount == ''
-    erb(:errors)
+    erb(:user_errors)
   else
     amount = amount.to_i
     transaction_type = params[:transaction_type].to_i
@@ -213,7 +213,7 @@ get('/transactions/:id') do
   if @user.transactions.include? @transaction
     erb(:transaction_category)
   else
-    erb(:errors)
+    erb(:user_errors)
   end
 end
 
@@ -223,7 +223,7 @@ get('/transactions_edit/:id') do
   if @user.transactions.include? @transaction
     erb(:edit_transaction)
   else
-    erb(:errors)
+    erb(:user_errors)
   end
 end
 
