@@ -62,7 +62,7 @@ form h6 {
   color: #9e9e9e;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1200px) {
   #nav-username {
     display: none;
   }
