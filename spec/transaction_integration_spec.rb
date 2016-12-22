@@ -19,11 +19,11 @@ describe('the transactions path', {:type => :feature}) do
     select('Checking', :from => 'account_id')
     click_button('Add Transaction')
     expect(page).to have_content('Groceries')
-    # click_link("change_history")
-    # fill_in('name', :with => 'Checking')
-    # click_button('Update')
-    # expect(page).to have_content('Checking')
-    # click_button('delete_forever')
-    # expect(page).to_not have_content('Checking')
+    click_link("change_history")
+    fill_in('category', :with => 'Alcohol')
+    click_button('Update')
+    expect(page).to have_content('Alcohol')
+    click_button('delete_forever')
+    expect(page).to_not have_content('Alcohol')
   end
 end
