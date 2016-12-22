@@ -39,7 +39,7 @@
           <% end %>
         </select>
         <label for="accounts">Choose Account:</label>
-        <select class="browser-default" name="account_id">
+        <select class="browser-default" name="account_id" required>
           <% @user.accounts.each do |account| %>
             <option value="<%= account.id %>"><%= account.name %></option>
           <% end %>
