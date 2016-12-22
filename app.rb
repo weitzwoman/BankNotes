@@ -5,11 +5,13 @@ enable :sessions
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
 get('/') do
+  session.clear
   erb(:index)
 end
 
+# Account-related routes
 post('/signin') do
-  @user = User.find_by(name: params['username'])
+  @user = User.find_by(name: params['username'].titleize)
   if @user && @user.password_verified(params[:password])
     session[:user_id] = @user.id
     redirect('/user_account')
@@ -67,6 +69,48 @@ patch('/user_account') do
   redirect 'user_account'
 end
 
+get('/user_account/:id') do
+  @user = User.find(session[:user_id])
+  @account = Account.find(params['id'].to_i)
+  if @user.accounts.include? @account
+    erb(:edit_account)
+  else
+    erb(:errors)
+  end
+end
+
+patch('/user_account/:id') do
+  @user = User.find(session[:user_id])
+  @account = Account.find(params['id'].to_i)
+  @account.update(name: params['name'])
+  redirect '/user_account'
+end
+
+get('/logout') do
+  session.clear
+  redirect('/')
+end
+
+get('/edit_profile') do
+  @user = User.find(session[:user_id])
+  erb(:edit_profile)
+end
+
+patch('/edit_profile') do
+  @user = User.find(session[:user_id])
+  @user.update(name: params['name'])
+  redirect '/edit_profile'
+end
+
+delete('/edit_profile') do
+  @user = User.find(session[:user_id])
+  @user.destroy()
+  redirect '/'
+end
+# End Account-related routes
+
+
+# Budget-related routes
 get('/budgets') do
   @user = User.find(session[:user_id])
   @budgets = @user.budgets
@@ -95,6 +139,24 @@ get('/budget/:id') do
   end
 end
 
+patch('/update_budget/:id') do
+  budget_name = params[:budget_name]
+  budget_amount = params[:budget_amount].to_i
+  type_of_budget = params[:type_of_budget]
+  @budget = Budget.find(params[:id])
+  @budget.update({:name => budget_name, :amount => budget_amount, :current_amount => budget_amount, :type_of_budget => type_of_budget})
+  redirect '/budgets'
+end
+
+delete('/user_budget') do
+  budget = Budget.find(params['budget_id'].to_i)
+  budget.destroy()
+  redirect '/budgets'
+end
+# End Budget-related routes
+
+
+# Transaction-related routes
 get('/transactions') do
   @user = User.find(session[:user_id])
   @budgets = @user.budgets
@@ -167,44 +229,6 @@ get('/transactions_edit/:id') do
   end
 end
 
-get('/user_account/:id') do
-  @user = User.find(session[:user_id])
-  @account = Account.find(params['id'].to_i)
-  if @user.accounts.include? @account
-    erb(:edit_account)
-  else
-    erb(:errors)
-  end
-end
-
-patch('/user_account/:id') do
-  @user = User.find(session[:user_id])
-  @account = Account.find(params['id'].to_i)
-  @account.update(name: params['name'])
-  redirect '/user_account'
-end
-
-get('/logout') do
-  session.clear
-  redirect('/')
-end
-
-get('/edit_profile') do
-  @user = User.find(session[:user_id])
-  erb(:edit_profile)
-end
-
-patch('/edit_profile') do
-  @user = User.find(session[:user_id])
-  @user.update(name: params['name'])
-  redirect '/edit_profile'
-end
-
-delete('/edit_profile') do
-  @user = User.find(session[:user_id])
-  @user.destroy()
-  redirect '/'
-end
 
 patch('/transactions_edit/:id') do
   @user = User.find(session[:user_id])
@@ -235,21 +259,6 @@ patch('/transactions_edit/:id') do
   end
   @transaction.update({:category => category, :amount => amount, :date => date, :place => place, :budget_id => budget_id, :account_id => account_id})
   redirect '/transactions'
-end
-
-patch('/update_budget/:id') do
-  budget_name = params[:budget_name]
-  budget_amount = params[:budget_amount].to_i
-  type_of_budget = params[:type_of_budget]
-  @budget = Budget.find(params[:id])
-  @budget.update({:name => budget_name, :amount => budget_amount, :current_amount => budget_amount, :type_of_budget => type_of_budget})
-  redirect '/budgets'
-end
-
-delete('/user_budget') do
-  budget = Budget.find(params['budget_id'].to_i)
-  budget.destroy()
-  redirect '/budgets'
 end
 
 post('/transaction_search') do
@@ -315,7 +324,9 @@ get('/sort_by_balance') do
   @account_liabilities= Account.where("balance < 0 AND user_id = ?", @user.id)
   erb(:account)
 end
+# End Transaction-related routes
 
+# Stock-related routes
 get('/stocks') do
   @user = User.find(session[:user_id])
   erb(:stocks)
@@ -330,3 +341,4 @@ end
 get('/about') do
   erb(:about)
 end
+# End Stock-related routes

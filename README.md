@@ -2,8 +2,6 @@ Nice to Haves:
 - http://guides.rubyonrails.org/action_mailer_basics.html
 - make real README (tw/jt)
 - add integration specs (tw/jt)
-- reorder app.rb so it makes sense and doesn't make people crazy!!!! (tw/jt)
-- navbar currently disappears at 1000 pixels
 
 Nice to Haves:
 - as a user, i can set spending goals
@@ -14,8 +12,9 @@ Dreaming Big:
 - Paper Clip Gem
 
 COMPLETE:
+- reorder app.rb so it makes sense and doesn't make people crazy!!!!
 - copyright, add description of app to homepage, add about page on bottom bar link
-
+- navbar currently disappears at 1000 pixels
 - as a user, i can add budgeting to my accounts for monthly amounts, by category (update and delete categories)
 - as a user, i can add budgeting to my accounts for yearly amounts, by category (update and delete categories)
 - add username to navbar
