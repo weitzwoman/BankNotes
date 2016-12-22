@@ -10,6 +10,7 @@
     <script src="js/application.js" type="text/javascript"></script>
     <script src="js/chartkick.js" type="text/javascript"></script>
     <script src="js/jquery-3.1.1.js" type="text/javascript"></script>
+    <script src="js/materialize.min.js" type="text/javascript"></script>
     <script src='js/scripts.js' type="text/javascript"></script>
     <title>BankNotes</title>
   </head>
@@ -17,19 +18,25 @@
     <nav>
     <div class="nav-wrapper navcolor">
       <a href="/" class="brand-logo">BankNotes</a>
-      <span class="brand-logo"><% if @user %> |
-      <%= @user.name %>
-      <% end %> </span>
+      <% if session[:user_id] %>
+      <a href="#" data-activates="mobile-demo" class="button-collapse right"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <% if session[:user_id] %>
           <li class="<%= 'active' if request.url == 'http://localhost:4567/user_account' %>"><a href="/user_account">Accounts</a></li>
           <li class="<%= 'active' if request.url == 'http://localhost:4567/budgets' %>"><a href="/budgets">Budgets</a></li>
           <li class="<%= 'active' if request.url == 'http://localhost:4567/transactions' or request.url == 'http://localhost:4567/transaction_search' %>"><a href="/transactions">Transactions</a></li>
           <li class="<%= 'active' if request.url == 'http://localhost:4567/stocks' %>"><a href="/stocks">Stocks</a></li>
           <li class="<%= 'active' if request.url == 'http://localhost:4567/edit_profile' %>"><a href="/edit_profile">Edit Profile</a></li>
           <li class="<%= 'active' if request.url == 'http://localhost:4567/logout' %>"><a href="/logout">Sign Out</a></li>
-        <% end %>
       </ul>
+      <ul id="mobile-demo" class="right side-nav">
+          <li class="<%= 'active' if request.url == 'http://localhost:4567/user_account' %>"><a href="/user_account">Accounts</a></li>
+          <li class="<%= 'active' if request.url == 'http://localhost:4567/budgets' %>"><a href="/budgets">Budgets</a></li>
+          <li class="<%= 'active' if request.url == 'http://localhost:4567/transactions' or request.url == 'http://localhost:4567/transaction_search' %>"><a href="/transactions">Transactions</a></li>
+          <li class="<%= 'active' if request.url == 'http://localhost:4567/stocks' %>"><a href="/stocks">Stocks</a></li>
+          <li class="<%= 'active' if request.url == 'http://localhost:4567/edit_profile' %>"><a href="/edit_profile">Edit Profile</a></li>
+          <li class="<%= 'active' if request.url == 'http://localhost:4567/logout' %>"><a href="/logout">Sign Out</a></li>
+      </ul>
+      <% end %>
     </div>
   </nav>
     <div class='container'>
