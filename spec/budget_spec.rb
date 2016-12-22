@@ -20,6 +20,14 @@ describe(Budget) do
     end
   end
 
+  describe("#titleize_budget") do
+    it "titleizes budget name" do
+      test_user = User.create({:name => 'cody', :password => '1234'})
+      test_budget = Budget.create({:name => 'codybruh', :amount => 100.00, :current_amount => 100.00, :user_id => test_user.id})
+      expect(test_budget.name).to(eq('Codybruh'))
+    end
+  end
+
   it {should validate_presence_of(:name)}
   it {should validate_presence_of(:amount)}
   it {should validate_presence_of(:current_amount)}

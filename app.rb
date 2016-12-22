@@ -5,13 +5,12 @@ enable :sessions
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
 get('/') do
-  session.clear
   erb(:index)
 end
 
 # Account-related routes
 post('/signin') do
-  @user = User.find_by(name: params['username'].titleize)
+  @user = User.find_by(name: params['username'])
   if @user && @user.password_verified(params[:password])
     session[:user_id] = @user.id
     redirect('/user_account')

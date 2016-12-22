@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  before_save(:titleize_user)
   has_many(:accounts)
   has_many(:budgets)
   has_many(:transactions)
@@ -12,12 +11,6 @@ class User < ActiveRecord::Base
     verified = authenticate(password)
     errors.add(:password, 'is invalid. Please resubmit.') unless verified
     verified
-  end
-
-private
-
-  def titleize_user
-    self.name = self.name.titleize
   end
 
 end
