@@ -1,4 +1,5 @@
 Nice to Haves:
+- http://guides.rubyonrails.org/action_mailer_basics.html
 - make real README (tw/jt)
 - add integration specs (tw/jt)
 - reorder app.rb so it makes sense and doesn't make people crazy!!!! (tw/jt)
