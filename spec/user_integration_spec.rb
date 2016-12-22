@@ -12,5 +12,10 @@ describe('the user route', {:type => :feature}) do
     fill_in('password', :with => 'secure')
     click_button('Sign In')
     expect(page).to have_content('Hello, Moneybags!')
+    click_link('Edit Profile')
+    fill_in('name', :with => 'Pennywise')
+    click_button('Edit Name')
+    click_link('Accounts')
+    expect(page).to have_content('Hello, Pennywise!')
   end
 end
