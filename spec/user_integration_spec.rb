@@ -17,5 +17,13 @@ describe('the user route', {:type => :feature}) do
     click_button('Edit Name')
     click_link('Accounts')
     expect(page).to have_content('Hello, Pennywise!')
+    click_link('Sign Out')
+    expect(page).to have_content('Organize')
+    fill_in('username', :with => 'Pennywise')
+    fill_in('password', :with => 'secure')
+    click_button('Sign In')
+    click_link('Edit Profile')
+    click_button('Delete Profile')
+    expect(page).to have_content('Organize')
   end
 end
