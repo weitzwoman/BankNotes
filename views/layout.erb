@@ -18,10 +18,10 @@
     <nav>
     <div class="nav-wrapper navcolor">
       <a href="/" class="brand-logo">BankNotes</a>
+      <span id="username" class="brand-logo"><% if @user %> |
+        <%= @user.name %>
+        <% end %> </span>
       <% if session[:user_id] %>
-      <span class="brand-logo"><% if @user %> |
-      <%= @user.name %>
-      <% end %> </span>
       <a href="#" data-activates="mobile-demo" class="button-collapse right"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li class="<%= 'active' if request.url == 'http://localhost:4567/user_account' %>"><a href="/user_account">Accounts</a></li>
@@ -36,6 +36,7 @@
           <li class="<%= 'active' if request.url == 'http://localhost:4567/logout' %>"><a href="/logout">Sign Out</a></li>
       </ul>
       <ul id="mobile-demo" class="right side-nav">
+
           <li class="<%= 'active' if request.url == 'http://localhost:4567/user_account' %>"><a href="/user_account">Accounts</a></li>
           <li class="<%= 'active' if request.url == 'http://localhost:4567/budgets' %>"><a href="/budgets">Budgets</a></li>
           <li class="<%= 'active' if request.url == 'http://localhost:4567/transactions' or request.url == 'http://localhost:4567/transaction_search' %>"><a href="/transactions">Transactions</a></li>

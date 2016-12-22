@@ -10,7 +10,7 @@ class Budget < ActiveRecord::Base
 
   private
 
-    def titleize_budget
-      self.name = self.name.titleize
-    end
+  def titleize_budget
+    self.name = self.name.titleize
+  end
 end
