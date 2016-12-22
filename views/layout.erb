@@ -24,25 +24,24 @@
       <% if session[:user_id] %>
       <a href="#" data-activates="mobile-demo" class="button-collapse right"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li class="<%= 'active' if request.url == 'http://localhost:4567/user_account' %>"><a href="/user_account">Accounts</a></li>
-          <li class="<%= 'active' if request.url == 'http://localhost:4567/budgets' %>"><a href="/budgets">Budgets</a></li>
+          <li class="<%= 'active' if request.url == 'http://localhost:4567/user_account' or request.url == 'http://banknotes-epicodus.herokuapp.com/user_account'%>"><a href="/user_account">Accounts</a></li>
+          <li class="<%= 'active' if request.url == 'http://localhost:4567/budgets' or request.url == 'http://banknotes-epicodus.herokuapp.com/budgets' %>"><a href="/budgets">Budgets</a></li>
           <% if @user %>
             <% if @user.accounts.any? %>
-              <li class="<%= 'active' if request.url == 'http://localhost:4567/transactions' or request.url == 'http://localhost:4567/transaction_search' %>"><a href="/transactions">Transactions</a></li>
+              <li class="<%= 'active' if request.url == 'http://localhost:4567/transactions' or request.url == 'http://localhost:4567/transaction_search' or request.url == 'http://banknotes-epicodus.herokuapp.com/transactions' or request.url == 'http://banknotes-epicodus.herokuapp.com/transaction_search' %>"><a href="/transactions">Transactions</a></li>
             <% end %>
           <% end %>
-          <li class="<%= 'active' if request.url == 'http://localhost:4567/stocks' %>"><a href="/stocks">Stocks</a></li>
-          <li class="<%= 'active' if request.url == 'http://localhost:4567/edit_profile' %>"><a href="/edit_profile">Edit Profile</a></li>
-          <li class="<%= 'active' if request.url == 'http://localhost:4567/logout' %>"><a href="/logout">Sign Out</a></li>
+          <li class="<%= 'active' if request.url == 'http://localhost:4567/stocks' or request.url == 'http://banknotes-epicodus.herokuapp.com/stocks' %>"><a href="/stocks">Stocks</a></li>
+          <li class="<%= 'active' if request.url == 'http://localhost:4567/edit_profile' or request.url == 'http://banknotes-epicodus.herokuapp.com/edit_profile' %>"><a href="/edit_profile">Edit Profile</a></li>
+          <li class="<%= 'active' if request.url == 'http://localhost:4567/logout' or request.url == 'http://banknotes-epicodus.herokuapp.com/logout' %>"><a href="/logout">Sign Out</a></li>
       </ul>
       <ul id="mobile-demo" class="right side-nav">
-
-          <li class="<%= 'active' if request.url == 'http://localhost:4567/user_account' %>"><a href="/user_account">Accounts</a></li>
-          <li class="<%= 'active' if request.url == 'http://localhost:4567/budgets' %>"><a href="/budgets">Budgets</a></li>
-          <li class="<%= 'active' if request.url == 'http://localhost:4567/transactions' or request.url == 'http://localhost:4567/transaction_search' %>"><a href="/transactions">Transactions</a></li>
-          <li class="<%= 'active' if request.url == 'http://localhost:4567/stocks' %>"><a href="/stocks">Stocks</a></li>
-          <li class="<%= 'active' if request.url == 'http://localhost:4567/edit_profile' %>"><a href="/edit_profile">Edit Profile</a></li>
-          <li class="<%= 'active' if request.url == 'http://localhost:4567/logout' %>"><a href="/logout">Sign Out</a></li>
+          <li class="<%= 'active' if request.url == 'http://localhost:4567/user_account' or request.url == 'http://banknotes-epicodus.herokuapp.com/user_account' %>"><a href="/user_account">Accounts</a></li>
+          <li class="<%= 'active' if request.url == 'http://localhost:4567/budgets' or request.url == 'http://banknotes-epicodus.herokuapp.com/budgets' %>"><a href="/budgets">Budgets</a></li>
+          <li class="<%= 'active' if request.url == 'http://localhost:4567/transactions' or request.url == 'http://localhost:4567/transaction_search' or request.url == 'http://banknotes-epicodus.herokuapp.com/transactions' or request.url == 'http://banknotes-epicodus.herokuapp.com/transaction_search' %>"><a href="/transactions">Transactions</a></li>
+          <li class="<%= 'active' if request.url == 'http://localhost:4567/stocks' or request.url == 'http://banknotes-epicodus.herokuapp.com/stocks' %>"><a href="/stocks">Stocks</a></li>
+          <li class="<%= 'active' if request.url == 'http://localhost:4567/edit_profile' or request.url == 'http://banknotes-epicodus.herokuapp.com/edit_profile' %>"><a href="/edit_profile">Edit Profile</a></li>
+          <li class="<%= 'active' if request.url == 'http://localhost:4567/logout' or request.url == 'http://banknotes-epicodus.herokuapp.com/logout' %>"><a href="/logout">Sign Out</a></li>
       </ul>
       <% end %>
     </div>
