@@ -55,7 +55,6 @@ post('/create_account') do
   end
 end
 
-
 delete('/user_account') do
   account = Account.find(params['account_id'].to_i)
   account.destroy()
