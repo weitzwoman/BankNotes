@@ -15,5 +15,7 @@ describe('the accounts path', {:type => :feature}) do
     fill_in('name', :with => 'Checking')
     click_button('Update')
     expect(page).to have_content('Checking')
+    click_button('delete_forever')
+    expect(page).to_not have_content('Checking')
   end
 end
